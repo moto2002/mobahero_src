@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{5C918110-7149-4F4E-BA09-14703596C18C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MobaClient</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Photon3Unity3D" />
+    <Reference Include="MobaProtocol" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MobaClient.MemoryDB\MobaColumn.cs" />
+    <Compile Include="MobaClient.MemoryDB\MobaRow.cs" />
+    <Compile Include="MobaClient.MemoryDB\MobaRowState.cs" />
+    <Compile Include="MobaClient.MemoryDB\MobaTable.cs" />
+    <Compile Include="MobaClient\ACKInfo.cs" />
+    <Compile Include="MobaClient\ChannelInfo.cs" />
+    <Compile Include="MobaClient\ClientMsgRecv.cs" />
+    <Compile Include="MobaClient\ClientResponseRecv.cs" />
+    <Compile Include="MobaClient\CmdPkgForThread.cs" />
+    <Compile Include="MobaClient\CustomClientReliableChannel.cs" />
+    <Compile Include="MobaClient\CustomSendRelivableCtrl.cs" />
+    <Compile Include="MobaClient\CustomTypes.cs" />
+    <Compile Include="MobaClient\DelegateContainer.cs" />
+    <Compile Include="MobaClient\DelegateType.cs" />
+    <Compile Include="MobaClient\DeviceInfo.cs" />
+    <Compile Include="MobaClient\Duration.cs" />
+    <Compile Include="MobaClient\FileIOHelper.cs" />
+    <Compile Include="MobaClient\FileType.cs" />
+    <Compile Include="MobaClient\FriendCode.cs" />
+    <Compile Include="MobaClient\FriendEventHandleBase.cs" />
+    <Compile Include="MobaClient\GlobalManager.cs" />
+    <Compile Include="MobaClient\INetEventHandleBase.cs" />
+    <Compile Include="MobaClient\Log.cs" />
+    <Compile Include="MobaClient\MobaConnectedType.cs" />
+    <Compile Include="MobaClient\MobaDisconnectedType.cs" />
+    <Compile Include="MobaClient\MobaEventHandler.cs" />
+    <Compile Include="MobaClient\MobaGateClientPeer.cs" />
+    <Compile Include="MobaClient\MobaLobbyClientPeer.cs" />
+    <Compile Include="MobaClient\MobaLoginClientPeer.cs" />
+    <Compile Include="MobaClient\MobaMasterClientPeer.cs" />
+    <Compile Include="MobaClient\MobaPeer.cs" />
+    <Compile Include="MobaClient\MobaPeerType.cs" />
+    <Compile Include="MobaClient\MobaPvpServerClientPeer.cs" />
+    <Compile Include="MobaClient\NetAddressHelper.cs" />
+    <Compile Include="MobaClient\PeerConnectedMessage.cs" />
+    <Compile Include="MobaClient\PeerDisconnectedMessage.cs" />
+    <Compile Include="MobaClient\PeerStatusChangedMessage.cs" />
+    <Compile Include="MobaClient\Photon2ClientMsg.cs" />
+    <Compile Include="MobaClient\PhotonClient.cs" />
+    <Compile Include="MobaClient\PingStatisticInfo.cs" />
+    <Compile Include="MobaClient\PVPGame.cs" />
+    <Compile Include="MobaClient\RecvCacheMgr.cs" />
+    <Compile Include="MobaClient\Room.cs" />
+    <Compile Include="MobaClient\SendPkgData.cs" />
+    <Compile Include="MobaClient\SendPkgMgr.cs" />
+    <Compile Include="MobaClient\TimeSyncInfo.cs" />
+    <Compile Include="MobaClient\TimeSyncMsgTimeoutInfo.cs" />
+    <Compile Include="MobaClient\TimeSyncSystem.cs" />
+    <Compile Include="MobaClient\UdpDriver.cs" />
+    <Compile Include="MobaClient\UdpDriverBase.cs" />
+    <Compile Include="MobaClient\UdpPackage.cs" />
+    <Compile Include="MobaClient\UdpPoolBase.cs" />
+    <Compile Include="MobaClient\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

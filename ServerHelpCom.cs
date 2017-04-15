@@ -1,7 +1,9 @@
 using ExitGames.Client.Photon;
 using MobaClient;
 using System;
-
+/// <summary>
+/// 服务器通信帮助抽象类，定义了抽象接口
+/// </summary>
 public class ServerHelpCom
 {
 	public virtual bool ConnectFlag

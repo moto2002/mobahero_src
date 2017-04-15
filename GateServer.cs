@@ -2,7 +2,9 @@ using Assets.Scripts.Model;
 using MobaClient;
 using MobaHeros.Gate;
 using System;
-
+/// <summary>
+/// 网关服务器类
+/// </summary>
 public class GateServer : ServerHelpCom
 {
 	private const string LockConnect = "ConnectGateServer";
