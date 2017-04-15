@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{294773C0-763C-474B-A89D-BFEF22A4847C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Pathfinding.Ionic.Zip.Reduced</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pathfinding.Ionic.BZip2\BitWriter.cs" />
+    <Compile Include="Pathfinding.Ionic.BZip2\BZip2.cs" />
+    <Compile Include="Pathfinding.Ionic.BZip2\BZip2Compressor.cs" />
+    <Compile Include="Pathfinding.Ionic.BZip2\BZip2InputStream.cs" />
+    <Compile Include="Pathfinding.Ionic.BZip2\BZip2OutputStream.cs" />
+    <Compile Include="Pathfinding.Ionic.BZip2\ParallelBZip2OutputStream.cs" />
+    <Compile Include="Pathfinding.Ionic.BZip2\Rand.cs" />
+    <Compile Include="Pathfinding.Ionic.BZip2\WorkItem.cs" />
+    <Compile Include="Pathfinding.Ionic.Crc\CRC32.cs" />
+    <Compile Include="Pathfinding.Ionic.Crc\CrcCalculatorStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\AddOrUpdateAction.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\AddProgressEventArgs.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\BadCrcException.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\BadPasswordException.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\BadReadException.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\BadStateException.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\CloseDelegate.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ComHelper.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\CompressionMethod.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\CountingStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\CryptoMode.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\EncryptionAlgorithm.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ExtractExistingFileAction.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ExtractProgressEventArgs.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\OffsetStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\OpenDelegate.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ReadOptions.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ReadProgressEventArgs.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\SaveProgressEventArgs.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\SetCompressionCallback.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\SfxGenerationException.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\SharedUtilities.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\WriteDelegate.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\Zip64Option.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipCipherStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipConstants.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipContainer.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipCrypto.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipEntry.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipEntrySource.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipEntryTimestamp.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipErrorAction.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipErrorEventArgs.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipException.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipFile.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipInputStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipOption.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipOutput.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipOutputStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipProgressEventArgs.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipProgressEventType.cs" />
+    <Compile Include="Pathfinding.Ionic.Zip\ZipSegmentedStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\Adler.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\BlockState.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\CompressionLevel.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\CompressionMode.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\CompressionStrategy.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\DeflateFlavor.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\DeflateManager.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\DeflateStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\FlushType.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\GZipStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\InflateBlocks.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\InflateCodes.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\InflateManager.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\InfTree.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\InternalConstants.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\InternalInflateConstants.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\ParallelDeflateOutputStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\SharedUtils.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\StaticTree.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\Tree.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\WorkItem.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\ZlibBaseStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\ZlibCodec.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\ZlibConstants.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\ZlibException.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\ZlibStream.cs" />
+    <Compile Include="Pathfinding.Ionic.Zlib\ZlibStreamFlavor.cs" />
+    <Compile Include="Pathfinding.Ionic\ComparisonOperator.cs" />
+    <Compile Include="Pathfinding.Ionic\CompoundCriterion.cs" />
+    <Compile Include="Pathfinding.Ionic\EnumUtil.cs" />
+    <Compile Include="Pathfinding.Ionic\FileSelector.cs" />
+    <Compile Include="Pathfinding.Ionic\LogicalConjunction.cs" />
+    <Compile Include="Pathfinding.Ionic\NameCriterion.cs" />
+    <Compile Include="Pathfinding.Ionic\SelectionCriterion.cs" />
+    <Compile Include="Pathfinding.Ionic\SizeCriterion.cs" />
+    <Compile Include="Pathfinding.Ionic\TimeCriterion.cs" />
+    <Compile Include="Pathfinding.Ionic\TypeCriterion.cs" />
+    <Compile Include="Pathfinding.Ionic\WhichTime.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

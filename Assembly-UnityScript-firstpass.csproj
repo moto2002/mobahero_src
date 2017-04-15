@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{5169DB6D-C609-4B77-BB2F-AF84530C0ACD}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-UnityScript-firstpass</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AAMode.cs" />
+    <Compile Include="AmbientObscurance.cs" />
+    <Compile Include="AntialiasingAsPostEffect.cs" />
+    <Compile Include="Bloom.cs" />
+    <Compile Include="BloomAndLensFlares.cs" />
+    <Compile Include="BloomScreenBlendMode.cs" />
+    <Compile Include="Blur.cs" />
+    <Compile Include="BokehDestination.cs" />
+    <Compile Include="Boundary.cs" />
+    <Compile Include="CameraMotionBlur.cs" />
+    <Compile Include="CharacterMotor.cs" />
+    <Compile Include="CharacterMotorJumping.cs" />
+    <Compile Include="CharacterMotorMovement.cs" />
+    <Compile Include="CharacterMotorMovingPlatform.cs" />
+    <Compile Include="CharacterMotorSliding.cs" />
+    <Compile Include="CharacterState.cs" />
+    <Compile Include="ColorCorrectionCurves.cs" />
+    <Compile Include="ColorCorrectionLut.cs" />
+    <Compile Include="ColorCorrectionMode.cs" />
+    <Compile Include="ContrastEnhance.cs" />
+    <Compile Include="Crease.cs" />
+    <Compile Include="DepthOfField34.cs" />
+    <Compile Include="DepthOfFieldScatter.cs" />
+    <Compile Include="Dof34QualitySetting.cs" />
+    <Compile Include="DofBlurriness.cs" />
+    <Compile Include="DofResolution.cs" />
+    <Compile Include="EdgeDetectEffectNormals.cs" />
+    <Compile Include="EdgeDetectMode.cs" />
+    <Compile Include="FastBloom.cs" />
+    <Compile Include="Fisheye.cs" />
+    <Compile Include="FPSCounter.cs" />
+    <Compile Include="FPSInputController.cs" />
+    <Compile Include="GlobalFog.cs" />
+    <Compile Include="HDRBloomMode.cs" />
+    <Compile Include="Joystick.cs" />
+    <Compile Include="LensflareStyle34.cs" />
+    <Compile Include="MovementTransferOnJump.cs" />
+    <Compile Include="NoiseAndGrain.cs" />
+    <Compile Include="PlatformInputController.cs" />
+    <Compile Include="PostEffectsBase.cs" />
+    <Compile Include="PostEffectsHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quads.cs" />
+    <Compile Include="ScreenOverlay.cs" />
+    <Compile Include="ShaftsScreenBlendMode.cs" />
+    <Compile Include="SunShafts.cs" />
+    <Compile Include="SunShaftsResolution.cs" />
+    <Compile Include="ThirdPersonCamera.cs" />
+    <Compile Include="ThirdPersonController.cs" />
+    <Compile Include="TiltShiftHdr.cs" />
+    <Compile Include="TimedObjectDestructor.cs" />
+    <Compile Include="Tonemapping.cs" />
+    <Compile Include="Triangles.cs" />
+    <Compile Include="TweakMode34.cs" />
+    <Compile Include="Vignetting.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

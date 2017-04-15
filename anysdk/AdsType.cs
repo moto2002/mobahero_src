@@ -1,0 +1,15 @@
+using System;
+
+namespace anysdk
+{
+	public enum AdsType
+	{
+		AD_TYPE_BANNER,
+		AD_TYPE_FULLSCREEN,
+		AD_TYPE_MOREAPP,
+		AD_TYPE_OFFERWALL,
+		AD_TYPE_REWARDEDVIDEO,
+		AD_TYPE_NATIVEEXPRESS,
+		AD_TYPE_NATIVEADVANCED
+	}
+}

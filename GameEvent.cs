@@ -1,0 +1,36 @@
+using System;
+
+public enum GameEvent
+{
+	None,
+	GameStart,
+	GamePrepare,
+	GamePause,
+	GameResume,
+	GamePlay,
+	GameOver,
+	GameExit,
+	GameRestart,
+	SceneChanged,
+	WaveSpawn,
+	NBTime,
+	LMHeroDead,
+	BLHeroDead,
+	UntiDead,
+	TimeTigger,
+	ChangePlayer,
+	BuffItemSpawn,
+	BuffItemDespawn,
+	BattlePhase0,
+	BattlePhase1,
+	BattlePhase2,
+	BattlePhase3,
+	ClickEnemyHero = 100,
+	CleanAllData,
+	HeroDoRSkillHit,
+	PlayerInit,
+	UpdateView,
+	TapMiniMapDown,
+	TapMiniMapUp,
+	MainPlayerHitted
+}

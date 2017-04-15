@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{AB8FBB43-4D7B-4444-9A10-561D7CFC7037}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>bindata</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Com.Game.Data\SysAchievementDailyVo.cs" />
+    <Compile Include="Com.Game.Data\SysAchievementTaskVo.cs" />
+    <Compile Include="Com.Game.Data\SysAchievementVo.cs" />
+    <Compile Include="Com.Game.Data\SysActivityModuleVo.cs" />
+    <Compile Include="Com.Game.Data\SysActivityTaskVo.cs" />
+    <Compile Include="Com.Game.Data\SysActivityTypeVo.cs" />
+    <Compile Include="Com.Game.Data\SysActivityVo.cs" />
+    <Compile Include="Com.Game.Data\SysAiBattleArrayVo.cs" />
+    <Compile Include="Com.Game.Data\SysAiConfigVo.cs" />
+    <Compile Include="Com.Game.Data\SysAiPairingsVo.cs" />
+    <Compile Include="Com.Game.Data\SysAttackDefencetypeVo.cs" />
+    <Compile Include="Com.Game.Data\SysAttendanceRewardsVo.cs" />
+    <Compile Include="Com.Game.Data\SysAttrNumberVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleAttrConfigNewVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleAttrLvVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleAttrRewardVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleConfigVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleItemsVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleMonsterCreepVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleRefreshVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleSceneVo.cs" />
+    <Compile Include="Com.Game.Data\SysBattleShopVo.cs" />
+    <Compile Include="Com.Game.Data\SysBulletScreenFormatVo.cs" />
+    <Compile Include="Com.Game.Data\SysBulletScreenVo.cs" />
+    <Compile Include="Com.Game.Data\SysCompetencyDegreeVo.cs" />
+    <Compile Include="Com.Game.Data\SysCouponVo.cs" />
+    <Compile Include="Com.Game.Data\SysCurrencyVo.cs" />
+    <Compile Include="Com.Game.Data\SysCustomizationVo.cs" />
+    <Compile Include="Com.Game.Data\SysDropCardVo.cs" />
+    <Compile Include="Com.Game.Data\SysDropChildVo.cs" />
+    <Compile Include="Com.Game.Data\SysDropItemsVo.cs" />
+    <Compile Include="Com.Game.Data\SysDropRandlibraryVo.cs" />
+    <Compile Include="Com.Game.Data\SysDropRewardsVo.cs" />
+    <Compile Include="Com.Game.Data\SysDropRootVo.cs" />
+    <Compile Include="Com.Game.Data\SysExchangeCodeVo.cs" />
+    <Compile Include="Com.Game.Data\SysGameBuffVo.cs" />
+    <Compile Include="Com.Game.Data\SysGameItemsVo.cs" />
+    <Compile Include="Com.Game.Data\SysGameResVo.cs" />
+    <Compile Include="Com.Game.Data\SysGiftDiamondVo.cs" />
+    <Compile Include="Com.Game.Data\SysGiftDropChildVo.cs" />
+    <Compile Include="Com.Game.Data\SysGiftDropVo.cs" />
+    <Compile Include="Com.Game.Data\SysGuildLogVo.cs" />
+    <Compile Include="Com.Game.Data\SysGuildVo.cs" />
+    <Compile Include="Com.Game.Data\SysHeroAttainmentLevelVo.cs" />
+    <Compile Include="Com.Game.Data\SysHeroMainVo.cs" />
+    <Compile Include="Com.Game.Data\SysHeroProficiencyPointsVo.cs" />
+    <Compile Include="Com.Game.Data\SysHeroRunsUnlockVo.cs" />
+    <Compile Include="Com.Game.Data\SysHeroSkillAiVo.cs" />
+    <Compile Include="Com.Game.Data\SysHeroSkinVo.cs" />
+    <Compile Include="Com.Game.Data\SysLanguageVo.cs" />
+    <Compile Include="Com.Game.Data\SysMagicbottleDropChildVo.cs" />
+    <Compile Include="Com.Game.Data\SysMagicbottleDropConstVo.cs" />
+    <Compile Include="Com.Game.Data\SysMagicbottleDropVo.cs" />
+    <Compile Include="Com.Game.Data\SysMagicbottleExpVo.cs" />
+    <Compile Include="Com.Game.Data\SysMagicbottleGoodViewVo.cs" />
+    <Compile Include="Com.Game.Data\SysMagicbottleLevelVo.cs" />
+    <Compile Include="Com.Game.Data\SysMagicbottleRankrewardsVo.cs" />
+    <Compile Include="Com.Game.Data\SysMailInfoVo.cs" />
+    <Compile Include="Com.Game.Data\SysMainuiRollingadvertisementVo.cs" />
+    <Compile Include="Com.Game.Data\SysMapChangeVo.cs" />
+    <Compile Include="Com.Game.Data\SysMedalVo.cs" />
+    <Compile Include="Com.Game.Data\SysMiniMapVo.cs" />
+    <Compile Include="Com.Game.Data\SysMonsterMainVo.cs" />
+    <Compile Include="Com.Game.Data\SysMusicChangeVo.cs" />
+    <Compile Include="Com.Game.Data\SysNewbieFrameVo.cs" />
+    <Compile Include="Com.Game.Data\SysNewbieTaskVo.cs" />
+    <Compile Include="Com.Game.Data\SysNewbieWidgeVo.cs" />
+    <Compile Include="Com.Game.Data\SysNoticeVo.cs" />
+    <Compile Include="Com.Game.Data\SysNotificationVo.cs" />
+    <Compile Include="Com.Game.Data\SysPromptVo.cs" />
+    <Compile Include="Com.Game.Data\SysPvpMatchConfigVo.cs" />
+    <Compile Include="Com.Game.Data\SysPvpPromptVo.cs" />
+    <Compile Include="Com.Game.Data\SysRankStageVo.cs" />
+    <Compile Include="Com.Game.Data\SysRecommendEquipmentVo.cs" />
+    <Compile Include="Com.Game.Data\SysServerNameVo.cs" />
+    <Compile Include="Com.Game.Data\SysShopItemVo.cs" />
+    <Compile Include="Com.Game.Data\SysShopVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillBuffVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillDamageVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillDescVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillFormulaVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillHigheffVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillLevelupLimitVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillLevelupVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillMainVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillPerformVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillSkinVo.cs" />
+    <Compile Include="Com.Game.Data\SysSkillUnitVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersAchievementVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersGivingVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersHeadportraitVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersLevelVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersNameVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersPictureframeVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersRobotnameVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersSkillVo.cs" />
+    <Compile Include="Com.Game.Data\SysSummonersTopupVo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

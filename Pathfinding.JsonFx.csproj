@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{D200262A-6CB9-4832-A1F2-92A3E103DB54}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Pathfinding.JsonFx</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pathfinding.Serialization.JsonFx\DataReaderProvider.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\DataWriterProvider.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\EcmaScriptIdentifier.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\EcmaScriptWriter.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\IDataReader.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\IDataReaderProvider.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\IDataWriter.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\IDataWriterProvider.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\IJsonSerializable.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonConverter.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonDataReader.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonDataWriter.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonDeserializationException.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonIgnoreAttribute.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonMemberAttribute.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonNameAttribute.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonOptInAttribute.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonReader.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonReaderSettings.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonSerializationException.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonSpecifiedPropertyAttribute.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonToken.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonTypeCoercionException.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonWriter.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\JsonWriterSettings.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\TypeCoercionUtility.cs" />
+    <Compile Include="Pathfinding.Serialization.JsonFx\WriteDelegate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{0BF3415A-BF79-43CA-8F85-A674DE405FFF}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>CLRSharp</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Cecil.20" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CLRSharp\CLRSharp_Environment.cs" />
+    <Compile Include="CLRSharp\CLRSharp_Instance.cs" />
+    <Compile Include="CLRSharp\CodeBody.cs" />
+    <Compile Include="CLRSharp\CodeEx.cs" />
+    <Compile Include="CLRSharp\CrossBind_IDisposable.cs" />
+    <Compile Include="CLRSharp\CrossBind_IEnumerable.cs" />
+    <Compile Include="CLRSharp\CrossBind_IEnumerator.cs" />
+    <Compile Include="CLRSharp\Delegate_Binder.cs" />
+    <Compile Include="CLRSharp\Delegate_BindTool.cs" />
+    <Compile Include="CLRSharp\Delegate_BindTool_Ret.cs" />
+    <Compile Include="CLRSharp\Field_Common_CLRSharp.cs" />
+    <Compile Include="CLRSharp\Field_Common_System.cs" />
+    <Compile Include="CLRSharp\ICLRSharp_Environment.cs" />
+    <Compile Include="CLRSharp\ICLRSharp_Logger.cs" />
+    <Compile Include="CLRSharp\ICLRType.cs" />
+    <Compile Include="CLRSharp\ICLRType_Sharp.cs" />
+    <Compile Include="CLRSharp\ICLRType_System.cs" />
+    <Compile Include="CLRSharp\ICrossBind.cs" />
+    <Compile Include="CLRSharp\IDelegate_BindTool.cs" />
+    <Compile Include="CLRSharp\IField.cs" />
+    <Compile Include="CLRSharp\IMethod.cs" />
+    <Compile Include="CLRSharp\IMethod_Sharp.cs" />
+    <Compile Include="CLRSharp\IMethod_System.cs" />
+    <Compile Include="CLRSharp\MethodParamList.cs" />
+    <Compile Include="CLRSharp\Method_Common_CLRSharp.cs" />
+    <Compile Include="CLRSharp\Method_Common_System.cs" />
+    <Compile Include="CLRSharp\NumberOnStack.cs" />
+    <Compile Include="CLRSharp\NumberType.cs" />
+    <Compile Include="CLRSharp\RefFunc.cs" />
+    <Compile Include="CLRSharp\StackFrame.cs" />
+    <Compile Include="CLRSharp\ThreadContext.cs" />
+    <Compile Include="CLRSharp\Type_Common_CLRSharp.cs" />
+    <Compile Include="CLRSharp\Type_Common_System.cs" />
+    <Compile Include="CLRSharp\ValueOnStack.cs" />
+    <Compile Include="CLRSharp\VBox.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
