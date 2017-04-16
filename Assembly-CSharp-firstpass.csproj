@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{48FE942E-2D5B-4E62-95AB-CDA006575D65}</ProjectGuid>
@@ -25,17 +25,22 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine" />
-    <Reference Include="LogUtils" />
+    <Reference Include="UnityEngine">
+      <HintPath>dll-library\UnityEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Pathfinding.JsonFx" />
-    <Reference Include="Pathfinding.Ionic.Zip.Reduced" />
-    <Reference Include="Pathfinding.ClipperLib" />
-    <Reference Include="UnityEngine.UI" />
-    <Reference Include="MediaKit" />
-    <Reference Include="ICSharpCode.SharpZipLib" />
-    <Reference Include="zxing.unity" />
+    <Reference Include="System.Core">
+      <HintPath>dll-library\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>dll-library\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>dll-library\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.unity">
+      <HintPath>dll-library\zxing.unity.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionEvent.cs" />
@@ -665,6 +670,28 @@
     <Compile Include="WwiseObjectIDext.cs" />
     <Compile Include="_ArrayPoolDefault.cs" />
     <Compile Include="_ArrayPoolLEngineDefault.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="LogUtils.csproj">
+      <Project>{7030070e-ef71-4690-a861-bef2bbbd8e87}</Project>
+      <Name>LogUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="MediaKit.csproj">
+      <Project>{ab2e3213-9067-4c93-869b-1b8b6f474bfc}</Project>
+      <Name>MediaKit</Name>
+    </ProjectReference>
+    <ProjectReference Include="Pathfinding.ClipperLib.csproj">
+      <Project>{04bcd549-8fd1-455d-81c7-639f1e920415}</Project>
+      <Name>Pathfinding.ClipperLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="Pathfinding.Ionic.Zip.Reduced.csproj">
+      <Project>{294773c0-763c-474b-a89d-bfef22a4847c}</Project>
+      <Name>Pathfinding.Ionic.Zip.Reduced</Name>
+    </ProjectReference>
+    <ProjectReference Include="Pathfinding.JsonFx.csproj">
+      <Project>{d200262a-6cb9-4832-a1f2-92a3e103db54}</Project>
+      <Name>Pathfinding.JsonFx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

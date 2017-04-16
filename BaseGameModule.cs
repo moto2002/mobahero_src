@@ -1,5 +1,7 @@
 using System;
-
+/// <summary>
+/// 游戏模块基类，方法接口空实现
+/// </summary>
 public class BaseGameModule : IGameModule
 {
 	public virtual void Init()

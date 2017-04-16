@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{CB580B2B-8BF6-4609-A0B4-890C75F265AF}</ProjectGuid>
@@ -25,26 +25,52 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine" />
-    <Reference Include="LogUtils" />
-    <Reference Include="System.Core" />
-    <Reference Include="System" />
-    <Reference Include="Assembly-CSharp-firstpass" />
-    <Reference Include="MobaClientCom" />
-    <Reference Include="System.Xml" />
-    <Reference Include="MobaProtocol" />
-    <Reference Include="bindata" />
-    <Reference Include="MobaClient" />
-    <Reference Include="HOTween" />
-    <Reference Include="Photon3Unity3D" />
-    <Reference Include="enum2int" />
-    <Reference Include="ICSharpCode.SharpZipLib" />
-    <Reference Include="zxing.unity" />
-    <Reference Include="CLRSharp" />
-    <Reference Include="Mono.Cecil.Pdb" />
-    <Reference Include="Mono.Cecil.20" />
-    <Reference Include="protobuf-net" />
-    <Reference Include="UnityEngine.UI" />
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\dll\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang">
+      <HintPath>dll-library\Boo.Lang.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>..\..\dll\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="HOTween">
+      <HintPath>..\..\dll\HOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>dll-library\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data">
+      <HintPath>dll-library\Mono.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>dll-library\Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll-library\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>dll-library\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>dll-library\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Security" />
+    <Reference Include="TDGAAnalytics">
+      <HintPath>dll-library\TDGAAnalytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>dll-library\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>dll-library\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityScript.Lang">
+      <HintPath>dll-library\UnityScript.Lang.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountType.cs" />
@@ -2249,6 +2275,68 @@
     <Compile Include="YJLog.cs" />
     <Compile Include="YzHero.cs" />
     <Compile Include="_GPUParticleCtrl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{48fe942e-2d5b-4e62-95ab-cda006575d65}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.csproj">
+      <Project>{5169db6d-c609-4b77-bb2f-af84530c0acd}</Project>
+      <Name>Assembly-UnityScript-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript.csproj">
+      <Project>{baf699ef-8cae-477b-8f8f-6f0cffa4150a}</Project>
+      <Name>Assembly-UnityScript</Name>
+    </ProjectReference>
+    <ProjectReference Include="bindata.csproj">
+      <Project>{ab8fbb43-4d7b-4444-9a10-561d7cfc7037}</Project>
+      <Name>bindata</Name>
+    </ProjectReference>
+    <ProjectReference Include="CLRSharp.csproj">
+      <Project>{0bf3415a-bf79-43ca-8f85-a674de405fff}</Project>
+      <Name>CLRSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="CruncherScripts.csproj">
+      <Project>{1bb29036-3f7b-4223-814c-b4834053d30d}</Project>
+      <Name>CruncherScripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="enum2int.csproj">
+      <Project>{818cac68-033e-47f9-8b24-592b7175a9a8}</Project>
+      <Name>enum2int</Name>
+    </ProjectReference>
+    <ProjectReference Include="LogUtils.csproj">
+      <Project>{7030070e-ef71-4690-a861-bef2bbbd8e87}</Project>
+      <Name>LogUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="MediaKit.csproj">
+      <Project>{ab2e3213-9067-4c93-869b-1b8b6f474bfc}</Project>
+      <Name>MediaKit</Name>
+    </ProjectReference>
+    <ProjectReference Include="MobaClient.csproj">
+      <Project>{5c918110-7149-4f4e-ba09-14703596c18c}</Project>
+      <Name>MobaClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="MobaClientCom.csproj">
+      <Project>{002f29fb-96be-40b8-b545-2700bf175b02}</Project>
+      <Name>MobaClientCom</Name>
+    </ProjectReference>
+    <ProjectReference Include="MobaProtocol.csproj">
+      <Project>{94ac06a4-c54a-4225-a951-0bd0724aed6b}</Project>
+      <Name>MobaProtocol</Name>
+    </ProjectReference>
+    <ProjectReference Include="Pathfinding.ClipperLib.csproj">
+      <Project>{04bcd549-8fd1-455d-81c7-639f1e920415}</Project>
+      <Name>Pathfinding.ClipperLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="Pathfinding.Ionic.Zip.Reduced.csproj">
+      <Project>{294773c0-763c-474b-a89d-bfef22a4847c}</Project>
+      <Name>Pathfinding.Ionic.Zip.Reduced</Name>
+    </ProjectReference>
+    <ProjectReference Include="Pathfinding.JsonFx.csproj">
+      <Project>{d200262a-6cb9-4832-a1f2-92a3e103db54}</Project>
+      <Name>Pathfinding.JsonFx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

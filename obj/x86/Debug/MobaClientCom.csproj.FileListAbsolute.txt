@@ -1,0 +1,6 @@
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\MobaClientCom.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\MobaClientCom.pdb
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\UnityEngine.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\x86\Debug\MobaClientCom.csprojResolveAssemblyReference.cache
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\x86\Debug\MobaClientCom.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\x86\Debug\MobaClientCom.pdb

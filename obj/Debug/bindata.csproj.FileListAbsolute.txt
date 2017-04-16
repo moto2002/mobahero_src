@@ -1,0 +1,4 @@
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\bindata.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\bindata.pdb
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\Debug\bindata.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\Debug\bindata.pdb

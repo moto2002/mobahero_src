@@ -1,20 +1,26 @@
-using Assets.Scripts.Model;
+﻿using Assets.Scripts.Model;
 using MobaClient;
 using MobaHeros.Gate;
 using System;
 /// <summary>
-/// ���ط�������
+/// 网关服务器类
 /// </summary>
 public class GateServer : ServerHelpCom
 {
 	private const string LockConnect = "ConnectGateServer";
-
+    /// <summary>
+    /// 通信连接客户端
+    /// </summary>
 	private readonly PhotonClient _client;
 
 	private bool _connect;
-
+    /// <summary>
+    /// 是否启用的标记
+    /// </summary>
 	private bool _enable;
-
+    /// <summary>
+    /// 是否连接，判断连接状态的标记
+    /// </summary>
 	public override bool ConnectFlag
 	{
 		get
@@ -40,7 +46,9 @@ public class GateServer : ServerHelpCom
 	public override void OnStart()
 	{
 	}
-
+    /// <summary>
+    /// 更新方法接口
+    /// </summary>
 	public override void OnUpdate()
 	{
 		base.OnUpdate();
@@ -50,13 +58,17 @@ public class GateServer : ServerHelpCom
 			mobaPeer.PeerUpdate();
 		}
 	}
-
+    /// <summary>
+    /// 断开连接，结束通信
+    /// </summary>
 	public override void OnDestroy()
 	{
 		this._client.IsReconnect = false;
 		this.End();
 	}
-
+    /// <summary>
+    /// 如果网关没有启用，启用，并进行连接
+    /// </summary>
 	public override void Begin()
 	{
 		if (!this._enable)
@@ -70,7 +82,9 @@ public class GateServer : ServerHelpCom
 			this.Connect();
 		}
 	}
-
+    /// <summary>
+    /// 结束网关连接，断开连接并结束相关逻辑处理
+    /// </summary>
 	public override void End()
 	{
 		if (this._enable)
@@ -83,7 +97,10 @@ public class GateServer : ServerHelpCom
 			}
 		}
 	}
-
+    /// <summary>
+    /// 服务器连接成功回调处理
+    /// </summary>
+    /// <param name="cType">连接类型</param>
 	public override void OnConnected(MobaConnectedType cType)
 	{
 		if (cType != MobaConnectedType.ExceptionOnConnect)
@@ -99,7 +116,10 @@ public class GateServer : ServerHelpCom
 			MobaMessageManager.ExecuteMsg(MobaMessageManager.GetMessage((ClientMsg)20009, cType, 0f));
 		}
 	}
-
+    /// <summary>
+    /// 服务器连接断开回调处理
+    /// </summary>
+    /// <param name="dType"></param>
 	public override void OnDisconnected(MobaDisconnectedType dType)
 	{
 		this.ConnectFlag = false;
@@ -109,7 +129,9 @@ public class GateServer : ServerHelpCom
 			NetWorkHelper.Instance.GateReconnection.Begin();
 		}
 	}
-
+    /// <summary>
+    /// 进行连接
+    /// </summary>
 	private void Connect()
 	{
 		SendMsgManager.Instance.ClientConnectToGate();

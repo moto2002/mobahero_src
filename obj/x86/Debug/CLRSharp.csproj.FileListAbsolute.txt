@@ -1,0 +1,6 @@
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\CLRSharp.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\CLRSharp.pdb
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\Mono.Cecil.20.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\x86\Debug\CLRSharp.csprojResolveAssemblyReference.cache
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\x86\Debug\CLRSharp.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\x86\Debug\CLRSharp.pdb

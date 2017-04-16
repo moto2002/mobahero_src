@@ -1,0 +1,5 @@
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\CruncherScripts.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\CruncherScripts.pdb
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\bin\Debug\UnityEngine.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\Debug\CruncherScripts.dll
+C:\Users\moto2002\Desktop\mobahero.uc.v131812\mobahero_src\obj\Debug\CruncherScripts.pdb

@@ -3,11 +3,15 @@ using Com.Game.Module;
 using MobaClient;
 using System;
 using UnityEngine;
-
+/// <summary>
+/// Master服务器类
+/// </summary>
 public class MasterServerNew : ServerHelpCom
 {
 	private const float waitTime = 3f;
-
+    /// <summary>
+    /// 服务器连接通信客户端
+    /// </summary>
 	private PhotonClient _client;
 
 	private bool bConnect;
@@ -15,11 +19,15 @@ public class MasterServerNew : ServerHelpCom
 	private bool enable;
 
 	private float disConnectTime;
-
+    /// <summary>
+    /// 重连次数计数值
+    /// </summary>
 	private int _retryNum;
 
 	private float pauseStartTime;
-
+    /// <summary>
+    /// 连接标记，用来判断通信是否连接
+    /// </summary>
 	public override bool ConnectFlag
 	{
 		get
@@ -31,13 +39,13 @@ public class MasterServerNew : ServerHelpCom
 			if (value != this.bConnect)
 			{
 				this.bConnect = value;
-				if (!this.bConnect)
+				if (!this.bConnect) //如果没有连接，启用重连计时器
 				{
 					this.ResetTimer();
 				}
 				else
 				{
-					this._retryNum = 0;
+					this._retryNum = 0; // 连接成功，则重置重连次数
 				}
 			}
 		}

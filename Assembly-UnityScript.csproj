@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{BAF699EF-8CAE-477B-8F8F-6F0CFFA4150A}</ProjectGuid>
@@ -25,9 +25,6 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="AnimationUV.cs" />
     <Compile Include="DontDestroyOnload.cs" />
     <Compile Include="Floatate.cs" />
@@ -38,6 +35,11 @@
     <Compile Include="SmoothFollow.cs" />
     <Compile Include="SmoothLookAt.cs" />
     <Compile Include="UVdh.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>dll-library\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

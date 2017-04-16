@@ -292,7 +292,10 @@ public class GameManager : MonoBehaviour
 	{
 		GameManager._gameState = state;
 	}
-
+    /// <summary>
+    /// 游戏是否正在运行状态中
+    /// </summary>
+    /// <returns></returns>
 	public static bool IsPlaying()
 	{
 		return GameManager._gameState == GameState.Game_Playing || GameManager._gameState == GameState.Game_Resume;
