@@ -2,6 +2,9 @@ using System;
 
 namespace Assets.Scripts.Server
 {
+    /// <summary>
+    /// 全局服务器连接接口类
+    /// </summary>
 	internal interface IGlobalComServer
 	{
 		void OnAwake();

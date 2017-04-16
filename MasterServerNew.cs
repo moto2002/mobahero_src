@@ -23,7 +23,9 @@ public class MasterServerNew : ServerHelpCom
     /// 重连次数计数值
     /// </summary>
 	private int _retryNum;
-
+    /// <summary>
+    /// 暂停开始时间
+    /// </summary>
 	private float pauseStartTime;
     /// <summary>
     /// 连接标记，用来判断通信是否连接
@@ -79,7 +81,9 @@ public class MasterServerNew : ServerHelpCom
 	{
 		this.End();
 	}
-
+    /// <summary>
+    /// 开始进行连接
+    /// </summary>
 	public override void Begin()
 	{
 		if (!this.enable)
@@ -88,7 +92,9 @@ public class MasterServerNew : ServerHelpCom
 			this.Connect();
 		}
 	}
-
+    /// <summary>
+    /// 断开关闭连接
+    /// </summary>
 	public override void End()
 	{
 		if (this.enable)
@@ -101,7 +107,10 @@ public class MasterServerNew : ServerHelpCom
 			}
 		}
 	}
-
+    /// <summary>
+    /// master连接成功回调处理
+    /// </summary>
+    /// <param name="cType"></param>
 	public override void OnConnected(MobaConnectedType cType)
 	{
 		if (cType != MobaConnectedType.ExceptionOnConnect)
@@ -129,7 +138,9 @@ public class MasterServerNew : ServerHelpCom
 			}
 		}
 	}
-
+    /// <summary>
+    /// 连接失败处理
+    /// </summary>
 	private void InqueryConnect()
 	{
 		if (this._retryNum >= 2)
@@ -154,12 +165,16 @@ public class MasterServerNew : ServerHelpCom
 			}, PopViewType.PopOneButton, "确定", "取消", null);
 		}
 	}
-
+    /// <summary>
+    /// 游戏重新开始处理
+    /// </summary>
 	private void OnHandle_restart()
 	{
 		GlobalObject.ReStartGame();
 	}
-
+    /// <summary>
+    /// 重连处理
+    /// </summary>
 	private void OnHandle_connect()
 	{
 		this._retryNum++;
@@ -190,12 +205,17 @@ public class MasterServerNew : ServerHelpCom
 			}
 		}
 	}
-
+    /// <summary>
+    /// 重置断线计时器
+    /// </summary>
 	private void ResetTimer()
 	{
 		this.disConnectTime = Time.realtimeSinceStartup;
 	}
-
+    /// <summary>
+    /// 是否断线超时
+    /// </summary>
+    /// <returns></returns>
 	private bool TimeOut()
 	{
 		return this.disConnectTime + 3f < Time.realtimeSinceStartup;
@@ -211,7 +231,7 @@ public class MasterServerNew : ServerHelpCom
 		{
 			this.pauseStartTime = Time.realtimeSinceStartup;
 		}
-		else if (this.pauseStartTime + 5f < Time.realtimeSinceStartup)
+		else if (this.pauseStartTime + 5f < Time.realtimeSinceStartup)//暂停超过5秒重新连接
 		{
 			this.Connect();
 		}

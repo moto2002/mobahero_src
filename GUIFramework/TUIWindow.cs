@@ -52,7 +52,9 @@ namespace GUIFramework
 				this.minDepth = value;
 			}
 		}
-
+        /// <summary>
+        /// 退出UI时是否需要刷新
+        /// </summary>
 		public bool IsRefreshReturnSeq
 		{
 			get
@@ -70,7 +72,10 @@ namespace GUIFramework
 				this.twScale = this.gameObj.AddComponent<TweenScale>();
 			}
 		}
-
+        /// <summary>
+        /// 窗口显示
+        /// </summary>
+        /// <param name="OnComplete"></param>
 		public void Show(EventDelegate.Callback OnComplete)
 		{
 			this.gameObj.SetActive(true);
@@ -79,12 +84,18 @@ namespace GUIFramework
 			tweenScale.SetOnFinished(OnComplete);
 		}
 
+        /// <summary>
+        /// 窗口隐藏
+        /// </summary>
+        /// <param name="OnComplete"></param>
 		public void Hide(EventDelegate.Callback OnComplete)
 		{
 			TweenScale tweenScale = TweenScale.Begin(this.gameObj, 0.25f, Vector3.zero);
 			tweenScale.SetOnFinished(OnComplete);
 		}
-
+        /// <summary>
+        /// 打开窗口
+        /// </summary>
 		public void OpenWindow()
 		{
 			if (this.coroutine != null)
@@ -93,12 +104,15 @@ namespace GUIFramework
 			}
 			this.gameObj.SetActive(true);
 		}
-
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
+        /// <param name="isDestroy">是否销毁</param>
 		public void CloseWindow(bool isDestroy)
 		{
 			if (this.DataCfg.IsDelayClose && base.gameObject != null && base.gameObject.active)
 			{
-				this.coroutine = base.StartCoroutine(this.DoCloseWindow(isDestroy));
+				this.coroutine = base.StartCoroutine(this.DoCloseWindow(isDestroy));//延迟关闭
 			}
 			else if (isDestroy)
 			{

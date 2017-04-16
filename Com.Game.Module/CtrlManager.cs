@@ -7,12 +7,22 @@ using System.Reflection;
 
 namespace Com.Game.Module
 {
+    /// <summary>
+    /// 控制管理器
+    /// </summary>
 	public static class CtrlManager
 	{
+        /// <summary>
+        /// 所有窗口视图控制器列表
+        /// </summary>
 		private static Dictionary<WindowID, IView> mDicWindCtrls;
-
+        /// <summary>
+        /// 所有打开窗口视图控制器列表
+        /// </summary>
 		private static Dictionary<WindowID, IView> mDicOpenCtrls;
-
+        /// <summary>
+        /// 初始化窗口控制管理器
+        /// </summary>
 		public static void Init()
 		{
 			UIManager.Instance.OnOpened += new UIManager.OpenWindowEventHandler(CtrlManager.OnOpenWindow);
@@ -20,7 +30,9 @@ namespace Com.Game.Module
 			CtrlManager.mDicWindCtrls = new Dictionary<WindowID, IView>();
 			CtrlManager.mDicOpenCtrls = new Dictionary<WindowID, IView>();
 		}
-
+        /// <summary>
+        /// 清理窗口控制管理器
+        /// </summary>
 		public static void Clear()
 		{
 			UIManager.Instance.OnOpened -= new UIManager.OpenWindowEventHandler(CtrlManager.OnOpenWindow);
@@ -29,11 +41,21 @@ namespace Com.Game.Module
 			CtrlManager.mDicOpenCtrls.Clear();
 		}
 
+        /// <summary>
+        /// 根据窗口ID获取指定窗口的视图控制器,如果没有，返回一个默认的
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="winId"></param>
+        /// <returns></returns>
 		public static T GetCtrl<T>(WindowID winId) where T : IView
 		{
 			return (!CtrlManager.mDicWindCtrls.ContainsKey(winId)) ? default(T) : ((T)((object)CtrlManager.mDicWindCtrls[winId]));
 		}
-
+        /// <summary>
+        /// 根据窗口ID获取指定窗口的视图控制器，如果没有，就返回null
+        /// </summary>
+        /// <param name="winId"></param>
+        /// <returns></returns>
 		public static IView GetCtrl(WindowID winId)
 		{
 			IView arg_23_0;
@@ -49,12 +71,21 @@ namespace Com.Game.Module
 			return arg_23_0;
 		}
 
+        /// <summary>
+        /// 添加指定窗口ID的视图控制器到控制管理器中
+        /// </summary>
+        /// <param name="winId"></param>
+        /// <param name="view"></param>
 		public static void AddCtrl(WindowID winId, IView view)
 		{
 			view.WinId = winId;
 			CtrlManager.mDicWindCtrls[winId] = view;
 		}
 
+        /// <summary>
+        /// 从控制器管理器中移除指定窗口ID对应的视图控制器
+        /// </summary>
+        /// <param name="winId"></param>
 		public static void RemoveCtrl(WindowID winId)
 		{
 			if (CtrlManager.mDicWindCtrls.ContainsKey(winId))
@@ -66,12 +97,17 @@ namespace Com.Game.Module
 				CtrlManager.mDicOpenCtrls.Remove(winId);
 			}
 		}
-
+        /// <summary>
+        /// 返回前一个窗口
+        /// </summary>
 		public static void ReturnPreWindow()
 		{
 			UIManager.Instance.ShowPreWindow();
 		}
-
+        /// <summary>
+        /// 预加载指定窗口
+        /// </summary>
+        /// <param name="winId"></param>
 		public static void PreloadWindow(WindowID winId)
 		{
 			IView viewInstance = CtrlManager.GetViewInstance(winId);
