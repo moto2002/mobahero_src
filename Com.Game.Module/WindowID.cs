@@ -61,7 +61,7 @@ namespace Com.Game.Module
 		MenuView,
 		MiniMapView,
 		MedalView,
-		MenuTopBarView,
+		MenuTopBarView,                                  //顶部菜单条视图
 		MenuBottomBarView,
 		MedalEffectView,
 		NewWaitingView,

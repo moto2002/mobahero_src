@@ -18,13 +18,17 @@ namespace Com.Game.Module
 		private GameObject animationRoot;
 
 		public bool IsForceReset = true;
-
+        /// <summary>
+        /// 窗口标题
+        /// </summary>
 		public string WindowTitle
 		{
 			get;
 			set;
 		}
-
+        /// <summary>
+        /// 窗口资源配置类
+        /// </summary>
 		public WinResurceCfg WinResCfg
 		{
 			get;
@@ -36,7 +40,9 @@ namespace Com.Game.Module
 			get;
 			set;
 		}
-
+        /// <summary>
+        /// 窗口ID
+        /// </summary>
 		public WindowID WinId
 		{
 			get;
@@ -96,7 +102,9 @@ namespace Com.Game.Module
 		public virtual void Init()
 		{
 		}
-
+        /// <summary>
+        /// 打开窗口视图需要进行的处理
+        /// </summary>
 		public virtual void HandleAfterOpenView()
 		{
 		}
@@ -105,34 +113,51 @@ namespace Com.Game.Module
 		{
 			MobaMessageManagerTools.SendClientMsg(ClientV2C.signView_close, null, false);
 		}
-
+        /// <summary>
+        /// 注册更新相关的处理回调
+        /// </summary>
 		public virtual void RegisterUpdateHandler()
 		{
 		}
-
+        /// <summary>
+        /// 注销更新相关的处理回调
+        /// </summary>
 		public virtual void CancelUpdateHandler()
 		{
 		}
-
+        /// <summary>
+        /// 刷新UI
+        /// </summary>
 		public virtual void RefreshUI()
 		{
 		}
-
+        /// <summary>
+        /// 重启界面
+        /// </summary>
 		public virtual void OnRestart()
 		{
 		}
-
+        /// <summary>
+        /// 销毁窗口接口
+        /// </summary>
 		public virtual void Destroy()
 		{
 			this.UnloadPrefabCache();
 			this.uiWindow = null;
 		}
-
+        /// <summary>
+        /// 数据更新接口
+        /// </summary>
+        /// <param name="data"></param>
 		public virtual void DataUpdated(object data)
 		{
 			this.intiData = data;
 		}
-
+        /// <summary>
+        /// 加载预制资源并缓存key
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
 		protected GameObject LoadPrefabCache(string name)
 		{
 			GameObject result = ResourceManager.Load<GameObject>(name, true, this.WinResCfg.IsAssetbundle, null, 0, false);
@@ -142,7 +167,9 @@ namespace Com.Game.Module
 			}
 			return result;
 		}
-
+        /// <summary>
+        /// 卸载预制并清空缓存key列表
+        /// </summary>
 		protected void UnloadPrefabCache()
 		{
 			if (this.prefabCacheKeys != null)
@@ -152,41 +179,56 @@ namespace Com.Game.Module
 				this.prefabCacheKeys.Clear();
 			}
 		}
-
+        /// <summary>
+        /// 返回逻辑执行接口
+        /// </summary>
+        /// <returns></returns>
 		public virtual bool DoReturnLogic()
 		{
 			return true;
 		}
-
+        /// <summary>
+        /// 初始化接口
+        /// </summary>
 		public virtual void Initialize()
 		{
-			if (this.IsForceReset)
+			if (this.IsForceReset)//强制重置
 			{
 				this.BindObject();
 				this.IsForceReset = false;
 			}
 			this.RegisterListener();
 		}
-
+        /// <summary>
+        /// 处理隐藏事件接口
+        /// </summary>
 		public virtual void HandleHideEvent()
 		{
 			this.UnRegisterListener();
 		}
-
+        /// <summary>
+        /// 处理销毁事件接口
+        /// </summary>
 		public virtual void HandleDestroyEvent()
 		{
 			this.HandleHideEvent();
 			this.IsForceReset = true;
 		}
-
+        /// <summary>
+        /// 重新绑定游戏对象//////
+        /// </summary>
 		protected virtual void BindObject()
 		{
 		}
-
+        /// <summary>
+        /// 注册事件侦听处理
+        /// </summary>
 		protected virtual void RegisterListener()
 		{
 		}
-
+        /// <summary>
+        /// 注销事件侦听处理
+        /// </summary>
 		protected virtual void UnRegisterListener()
 		{
 		}

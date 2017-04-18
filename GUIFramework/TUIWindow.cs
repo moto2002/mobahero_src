@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace GUIFramework
 {
+    /// <summary>
+    /// 窗口UI绑定脚本组件
+    /// </summary>
 	public class TUIWindow : MonoBehaviour
 	{
 		public WinDataCfg DataCfg;

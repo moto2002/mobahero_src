@@ -114,7 +114,11 @@ namespace Com.Game.Module
 			viewInstance.WinId = winId;
 			UIManager.Instance.PreloadWindow(viewInstance.WinId.ToString(), viewInstance.WinResCfg);
 		}
-
+        /// <summary>
+        /// 打开指定窗口，使用指定视图控制器
+        /// </summary>
+        /// <param name="winId"></param>
+        /// <param name="ctrl"></param>
 		public static void OpenWindow(WindowID winId, IView ctrl = null)
 		{
 			try
@@ -143,7 +147,10 @@ namespace Com.Game.Module
 				ClientLogger.LogException(e);
 			}
 		}
-
+        /// <summary>
+        /// 关闭指定窗口
+        /// </summary>
+        /// <param name="winId"></param>
 		public static void CloseWindow(WindowID winId)
 		{
 			if (!CtrlManager.mDicOpenCtrls.ContainsKey(winId))
@@ -152,19 +159,28 @@ namespace Com.Game.Module
 			}
 			UIManager.Instance.CloseWindow(winId.ToString());
 		}
-
+        /// <summary>
+        /// 判断指定窗口是否已打开
+        /// </summary>
+        /// <param name="winId"></param>
+        /// <returns></returns>
 		public static bool IsWindowOpen(WindowID winId)
 		{
 			return CtrlManager.mDicOpenCtrls != null && CtrlManager.mDicOpenCtrls.ContainsKey(winId);
 		}
-
+        /// <summary>
+        /// 销毁所有窗口
+        /// </summary>
 		public static void DestroyAllWindows()
 		{
 			UIManager.Instance.DestroyAllWindows();
 			CtrlManager.mDicWindCtrls.Clear();
 			CtrlManager.mDicOpenCtrls.Clear();
 		}
-
+        /// <summary>
+        /// 除排除列表中的窗口外所有窗口销毁(包括界面控制器)
+        /// </summary>
+        /// <param name="winIdsIgnored"></param>
 		public static void DestroyAllWindowsExcept(params WindowID[] winIdsIgnored)
 		{
 			string[] winIdsIgnored2 = (from x in winIdsIgnored
@@ -183,17 +199,24 @@ namespace Com.Game.Module
 				CtrlManager.mDicOpenCtrls.Remove(current2);
 			}
 		}
-
+        /// <summary>
+        /// 获取指定窗口id的窗口视图控制器实例
+        /// </summary>
+        /// <param name="winId"></param>
+        /// <returns></returns>
 		private static IView GetViewInstance(WindowID winId)
 		{
 			PropertyInfo property = UICtrlDefine.mDicCtrlType[winId].GetProperty("Instance", BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
 			return property.GetGetMethod().Invoke(null, null) as IView;
 		}
-
+        /// <summary>
+        /// 打开窗口事件回调处理
+        /// </summary>
+        /// <param name="args"></param>
 		private static void OnOpenWindow(OpenWindowEventArgs args)
 		{
 			WindowID key = (WindowID)((int)Enum.Parse(typeof(WindowID), args.WinName));
-			if (args.IsSuccess)
+			if (args.IsSuccess)  //成功打开
 			{
 				IView view = CtrlManager.mDicWindCtrls[key];
 				TUIWindow uiWindow = args.UiWindow;
@@ -223,7 +246,7 @@ namespace Com.Game.Module
 				view.HandleAfterOpenView();
 				CtrlManager.mDicOpenCtrls[key] = view;
 			}
-			else
+			else //失败，就移除
 			{
 				CtrlManager.mDicWindCtrls.Remove(key);
 			}

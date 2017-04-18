@@ -248,7 +248,10 @@ namespace GUIFramework
 				}
 			}
 		}
-
+        /// <summary>
+        /// 关闭指定窗口
+        /// </summary>
+        /// <param name="winName"></param>
 		public void CloseWindow(string winName)
 		{
 			if (this.mDicOpenWindows.ContainsKey(winName))
@@ -261,7 +264,9 @@ namespace GUIFramework
 				this.OnClosed(new CloseWindowEventArgs(false, winName, false, false, null));
 			}
 		}
-
+        /// <summary>
+        /// 关闭销毁所有窗口
+        /// </summary>
 		public void DestroyAllWindows()
 		{
 			List<string> list = new List<string>(this.mDicAllWindows.Keys);
@@ -284,7 +289,10 @@ namespace GUIFramework
 			this.mDicOpenWindows.Clear();
 			this.mSepReturnWins.Clear();
 		}
-
+        /// <summary>
+        /// 销毁除了忽窗口略列表外所有的
+        /// </summary>
+        /// <param name="winIdsIgnored"></param>
 		public void DestroyAllWindowsExcept(params string[] winIdsIgnored)
 		{
 			UIManager.<DestroyAllWindowsExcept>c__AnonStorey20E <DestroyAllWindowsExcept>c__AnonStorey20E = new UIManager.<DestroyAllWindowsExcept>c__AnonStorey20E();
@@ -316,7 +324,10 @@ namespace GUIFramework
 			}
 			this.mSepReturnWins.Clear();
 		}
-
+        /// <summary>
+        /// 销毁指定窗口及回收资源
+        /// </summary>
+        /// <param name="winID"></param>
 		public void DestroyWindow(string winID)
 		{
 			if (this.mDicAllWindows.ContainsKey(winID))
@@ -539,7 +550,7 @@ namespace GUIFramework
 					ReturnWinSeqData returnWinSeqData = new ReturnWinSeqData();
 					foreach (KeyValuePair<string, TUIWindow> current in this.mDicOpenWindows)
 					{
-						bool flag2 = true;
+						bool flag2 = true;//是不是普通窗口
 						if (uiWin.ShowCfg.ShowMode == WindowShowMode.NeedReturn || current.Value.DataCfg.WinType == WindowType.Fixed || current.Value.DataCfg.WinType == WindowType.Background || current.Value.DataCfg.WinType == WindowType.Hint || current.Value.DataCfg.WinType == WindowType.Highest)
 						{
 							flag2 = false;
@@ -576,7 +587,10 @@ namespace GUIFramework
 				this.HideAllOpenWindow(true);
 			}
 		}
-
+        /// <summary>
+        /// 打开指定窗口，该窗口会退出返回
+        /// </summary>
+        /// <param name="winName"></param>
 		private void ShowWindowForReturn(string winName)
 		{
 			this.mDicOpenWindows[winName] = this.mDicAllWindows[winName];
@@ -586,7 +600,10 @@ namespace GUIFramework
 				this.OnOpened(new OpenWindowEventArgs(true, winName, this.mDicOpenWindows[winName]));
 			}
 		}
-
+        /// <summary>
+        /// 隐藏关闭窗口
+        /// </summary>
+        /// <param name="winName"></param>
 		private void HideWindow(string winName)
 		{
 			TUIWindow exists;
@@ -600,12 +617,14 @@ namespace GUIFramework
 				this.mDicOpenWindows.Remove(winName);
 			}
 		}
-
+        /// <summary>
+        /// 显示前一个界面窗口
+        /// </summary>
 		private void DoShowPreWindow()
 		{
 			if (this.mSepReturnWins.Count != 0)
 			{
-				ReturnWinSeqData returnWinSeqData = this.mSepReturnWins.Peek();
+				ReturnWinSeqData returnWinSeqData = this.mSepReturnWins.Peek(); //从返回堆栈中获取一个返回窗口请求数据
 				if (returnWinSeqData != null)
 				{
 					string winName = returnWinSeqData.hideTargetWindow.WinName;
@@ -626,7 +645,7 @@ namespace GUIFramework
 								}
 							}
 						}
-						this.mSepReturnWins.Pop();
+						this.mSepReturnWins.Pop();  //该窗口返回请求数据出栈
 					}
 				}
 				return;
@@ -636,7 +655,9 @@ namespace GUIFramework
 				return;
 			}
 		}
-
+        /// <summary>
+        /// 清楚返回堆栈
+        /// </summary>
 		private void ClearReturnSeq()
 		{
 			if (this.mSepReturnWins != null)

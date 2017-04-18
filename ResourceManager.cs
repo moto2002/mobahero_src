@@ -11,9 +11,13 @@ public class ResourceManager : IGlobalComServer
 	private static bool init;
 
 	private static AssetManager _assetMgr;
-
+    /// <summary>
+    /// 游戏资源列表
+    /// </summary>
 	private static Dictionary<string, UnityEngine.Object> m_gameResList = new Dictionary<string, UnityEngine.Object>();
-
+    /// <summary>
+    /// 资源路径列表
+    /// </summary>
 	private static Dictionary<string, UnityEngine.Object> m_pathResList = new Dictionary<string, UnityEngine.Object>();
 
 	public static bool openLog = false;
@@ -81,7 +85,11 @@ public class ResourceManager : IGlobalComServer
 	{
 		ResourceManager._assetMgr.GetDownLoadInfo(ref nFreeSpase, ref nNeedSpase);
 	}
-
+    /// <summary>
+    /// 初始化数据资源
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="loadDataCallback"></param>
 	public static void InitData(string url, Callback loadDataCallback = null)
 	{
 		if (!ResourceManager.init)
@@ -91,7 +99,17 @@ public class ResourceManager : IGlobalComServer
 			LanguageManager.Instance.getDataReady = true;
 		}
 	}
-
+    /// <summary>
+    /// 加载指定资源
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="resId"></param>
+    /// <param name="loadFromCache"></param>
+    /// <param name="loadFromBundle"></param>
+    /// <param name="firstLoadCallback"></param>
+    /// <param name="skin"></param>
+    /// <param name="isMonsterSkin"></param>
+    /// <returns></returns>
 	public static T Load<T>(string resId, bool loadFromCache = true, bool loadFromBundle = true, Action<T> firstLoadCallback = null, int skin = 0, bool isMonsterSkin = false) where T : class
 	{
 		if (resId == null || resId == "[]")
@@ -296,7 +314,9 @@ public class ResourceManager : IGlobalComServer
 	public void OnApplicationPause(bool isPause)
 	{
 	}
-
+    /// <summary>
+    /// 清理资源列表
+    /// </summary>
 	public static void ClearResources()
 	{
 		if (ResourceManager.m_gameResList != null && ResourceManager.m_gameResList.Count > 0)
