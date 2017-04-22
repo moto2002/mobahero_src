@@ -5,7 +5,9 @@ using MobaProtocol.Data;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 关卡管理器
+/// </summary>
 public class LevelManager : IGlobalComServer
 {
 	[SerializeField]
@@ -46,7 +48,9 @@ public class LevelManager : IGlobalComServer
 			return LevelManager.CurLevelId.Equals("10061") || LevelManager.CurLevelId.Equals("10062") || LevelManager.CurLevelId.Equals("10063") || LevelManager.CurLevelId.Equals("10064") || LevelManager.CurBattleType == 6 || LevelManager.CurLevelId.Equals("10065") || LevelManager.CurLevelId.Equals("10066");
 		}
 	}
-
+    /// <summary>
+    /// 当前关卡id
+    /// </summary>
 	public static string CurLevelId
 	{
 		get

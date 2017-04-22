@@ -6,8 +6,13 @@ namespace Assets.Scripts.Character.Control
 {
 	public class ControlEventManager
 	{
+        /// <summary>
+        /// 控制事件列表
+        /// </summary>
 		private List<ControlEvent> rowEventList;
-
+        /// <summary>
+        /// 事件处理器列表
+        /// </summary>
 		private List<IControlHandler> listTouchHandler;
 
 		private ControlEvent lastTriggerEvent;
@@ -46,7 +51,10 @@ namespace Assets.Scripts.Character.Control
 				this.tDebug.OnExit();
 			}
 		}
-
+        /// <summary>
+        /// 开启或禁用多点触摸
+        /// </summary>
+        /// <param name="b"></param>
 		public void OpenMultiTouch(bool b)
 		{
 			Input.multiTouchEnabled = b;
@@ -59,12 +67,17 @@ namespace Assets.Scripts.Character.Control
 				}
 			}
 		}
-
+        /// <summary>
+        /// 清空事件列表
+        /// </summary>
 		private void ClearEvent()
 		{
 			this.rowEventList.Clear();
 		}
-
+        /// <summary>
+        /// 添加新事件到事件列表
+        /// </summary>
+        /// <param name="newEvent"></param>
 		public void AddEvent(ControlEvent newEvent)
 		{
 			if (newEvent != null)
@@ -72,7 +85,11 @@ namespace Assets.Scripts.Character.Control
 				this.rowEventList.Add(newEvent);
 			}
 		}
-
+        /// <summary>
+        /// 更新检测控制事件
+        /// </summary>
+        /// <param name="deltaTime"></param>
+        /// <returns></returns>
 		public ControlEvent UpdateControl(float deltaTime)
 		{
 			this.ClearEvent();
@@ -82,7 +99,10 @@ namespace Assets.Scripts.Character.Control
 			}
 			return this.HandleEvent();
 		}
-
+        /// <summary>
+        /// 根据优先级获取一个待处理事件
+        /// </summary>
+        /// <returns></returns>
 		private ControlEvent HandleEvent()
 		{
 			ControlEvent firstPirorityEvent = this.GetFirstPirorityEvent();
@@ -97,7 +117,10 @@ namespace Assets.Scripts.Character.Control
 			}
 			return null;
 		}
-
+        /// <summary>
+        /// 事件列表排序，取出第一优先事件
+        /// </summary>
+        /// <returns></returns>
 		private ControlEvent GetFirstPirorityEvent()
 		{
 			this.rowEventList.Sort((ControlEvent x, ControlEvent y) => ControlEvent.CompareTouchEvent(x, y));
@@ -107,7 +130,11 @@ namespace Assets.Scripts.Character.Control
 			}
 			return null;
 		}
-
+        /// <summary>
+        /// 触发事件是否发生变化
+        /// </summary>
+        /// <param name="cEvent"></param>
+        /// <returns></returns>
 		private bool IsEventChanged(ControlEvent cEvent)
 		{
 			bool result = true;
@@ -117,6 +144,7 @@ namespace Assets.Scripts.Character.Control
 			}
 			else if (this.lastTriggerEvent != null)
 			{
+                //主要是针对按住保持的特殊处理
 				if (cEvent.type == EControlType.ePress && this.lastTriggerEvent.type == EControlType.ePress)
 				{
 					if (cEvent.id == this.lastTriggerEvent.id)
@@ -130,7 +158,11 @@ namespace Assets.Scripts.Character.Control
 			}
 			return result;
 		}
-
+        /// <summary>
+        /// 是否触摸在UI上面
+        /// </summary>
+        /// <param name="targetPoint"></param>
+        /// <returns></returns>
 		public bool IsTouchUI(Vector3 targetPoint)
 		{
 			if (this.mUICamera == null)

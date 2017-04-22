@@ -4,25 +4,46 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-
+/// <summary>
+/// 冷却时间组件
+/// </summary>
 public class CrickTime : StaticUnitComponent
 {
+    /// <summary>
+    /// 运动动画冷却计时
+    /// </summary>
 	public float moveAnimCool;
-
+    /// <summary>
+    /// 动作冷却计时
+    /// </summary>
 	public float actionCool;
-
+    /// <summary>
+    /// 技能冷却计时
+    /// </summary>
 	public float skillCool;
-
+    /// <summary>
+    /// 攻击冷却计时
+    /// </summary>
 	public float attackCool;
-
+    /// <summary>
+    /// 等待冷却计时
+    /// </summary>
 	public float waitCool;
-
+    /// <summary>
+    /// ai冷却计时
+    /// </summary>
 	public float aiCool;
-
+    /// <summary>
+    /// 攻击时间长度冷却计时
+    /// </summary>
 	public float attackTimeLenghCool;
-
+    /// <summary>
+    /// 技能id列表
+    /// </summary>
 	public List<string> skillID = new List<string>();
-
+    /// <summary>
+    /// 技能CD列表
+    /// </summary>
 	public Dictionary<string, float> skillCD = new Dictionary<string, float>();
 
 	public Dictionary<string, float> publicCD = new Dictionary<string, float>();
@@ -30,13 +51,19 @@ public class CrickTime : StaticUnitComponent
 	public Dictionary<string, float> chargeCD = new Dictionary<string, float>();
 
 	public List<string> buffID = new List<string>();
-
+    /// <summary>
+    /// buff时间列表
+    /// </summary>
 	public Dictionary<string, float> buffTime = new Dictionary<string, float>();
-
+    /// <summary>
+    /// 是否初始化
+    /// </summary>
 	private bool _hasInit;
 
 	private Task _updateTask;
-
+    /// <summary>
+    /// 是否可以播放动画移动????
+    /// </summary>
 	public bool canMoveAnim
 	{
 		get
@@ -44,7 +71,9 @@ public class CrickTime : StaticUnitComponent
 			return this.moveAnimCool <= 0f;
 		}
 	}
-
+    /// <summary>
+    /// 是否执行Action
+    /// </summary>
 	public bool canAction
 	{
 		get
@@ -52,7 +81,9 @@ public class CrickTime : StaticUnitComponent
 			return this.actionCool <= 0f;
 		}
 	}
-
+    /// <summary>
+    /// 是否可以移动
+    /// </summary>
 	public bool canMove
 	{
 		get
@@ -60,7 +91,9 @@ public class CrickTime : StaticUnitComponent
 			return this.waitCool <= 0f;
 		}
 	}
-
+    /// <summary>
+    /// 是否可以旋转
+    /// </summary>
 	public bool canRotate
 	{
 		get
@@ -68,7 +101,9 @@ public class CrickTime : StaticUnitComponent
 			return this.waitCool <= 0f;
 		}
 	}
-
+    /// <summary>
+    /// 是否可以执行AI
+    /// </summary>
 	public bool canAI
 	{
 		get
@@ -76,7 +111,9 @@ public class CrickTime : StaticUnitComponent
 			return this.aiCool <= 0f;
 		}
 	}
-
+    /// <summary>
+    /// 是否可以释放技能
+    /// </summary>
 	public bool canSkill
 	{
 		get
@@ -84,7 +121,9 @@ public class CrickTime : StaticUnitComponent
 			return this.skillCool <= 0f;
 		}
 	}
-
+    /// <summary>
+    /// 是否可以进行攻击
+    /// </summary>
 	public bool canAttack
 	{
 		get
@@ -92,7 +131,9 @@ public class CrickTime : StaticUnitComponent
 			return this.attackCool <= 0f;
 		}
 	}
-
+    /// <summary>
+    /// 是否处于攻击时间内
+    /// </summary>
 	public bool isInAttackTimeLengh
 	{
 		get
@@ -100,7 +141,9 @@ public class CrickTime : StaticUnitComponent
 			return this.attackTimeLenghCool <= 0f;
 		}
 	}
-
+    /// <summary>
+    /// 清理所有状态
+    /// </summary>
 	private void Clear()
 	{
 		this.skillCD.Clear();
@@ -128,7 +171,10 @@ public class CrickTime : StaticUnitComponent
 		<Update_Coroutine>c__Iterator1D.<>f__this = this;
 		return <Update_Coroutine>c__Iterator1D;
 	}
-
+    /// <summary>
+    /// 更新各种冷却时间及buff时间状态
+    /// </summary>
+    /// <param name="deltaTime"></param>
 	private void DoUpdate(float deltaTime)
 	{
 		if (GameManager.IsPausing())
@@ -163,10 +209,12 @@ public class CrickTime : StaticUnitComponent
 		{
 			this.moveAnimCool -= deltaTime;
 		}
+        //不是观察者也不是当前玩家角色
 		if (!Singleton<PvpManager>.Instance.IsObserver && !this.self.isPlayer)
 		{
 			return;
 		}
+        //主控角色才进入以下逻辑,刷新各种技能的CD状态,buff时间状态等
 		for (int i = 0; i < this.skillID.Count; i++)
 		{
 			string text = this.skillID[i];
@@ -276,7 +324,11 @@ public class CrickTime : StaticUnitComponent
 	{
 		this.Clear();
 	}
-
+    /// <summary>
+    /// 设置技能cd时间
+    /// </summary>
+    /// <param name="skill_id"></param>
+    /// <param name="time"></param>
 	public void SetSkillCDTime(string skill_id, float time)
 	{
 		if (!this.skillID.Contains(skill_id))
@@ -289,7 +341,11 @@ public class CrickTime : StaticUnitComponent
 			this.skillCD[skill_id] = time;
 		}
 	}
-
+    /// <summary>
+    /// 获取技能cd时间
+    /// </summary>
+    /// <param name="skill_id"></param>
+    /// <returns></returns>
 	public float GetSkillCDtime(string skill_id)
 	{
 		if (this.skillCD.ContainsKey(skill_id))
@@ -298,12 +354,17 @@ public class CrickTime : StaticUnitComponent
 		}
 		return 0f;
 	}
-
+    /// <summary>
+    /// 重置技能冷却
+    /// </summary>
 	public void ResertAllSkillCool()
 	{
 		this.skillCD.Clear();
 	}
-
+    /// <summary>
+    /// 重置指定id的技能冷却
+    /// </summary>
+    /// <param name="skill_id"></param>
 	public void ResertSkillCool(string skill_id)
 	{
 		if (this.skillCD.ContainsKey(skill_id))
@@ -311,7 +372,11 @@ public class CrickTime : StaticUnitComponent
 			this.skillCD[skill_id] = 0f;
 		}
 	}
-
+    /// <summary>
+    /// 设置buff的时间
+    /// </summary>
+    /// <param name="buff_id"></param>
+    /// <param name="time"></param>
 	public void SetBuffTime(string buff_id, float time)
 	{
 		if (!this.buffID.Contains(buff_id))
@@ -324,7 +389,11 @@ public class CrickTime : StaticUnitComponent
 			this.buffTime[buff_id] = time;
 		}
 	}
-
+    /// <summary>
+    /// 获取buff的时间
+    /// </summary>
+    /// <param name="buff_id"></param>
+    /// <returns></returns>
 	public float GetBuffTime(string buff_id)
 	{
 		if (this.buffTime.ContainsKey(buff_id))
@@ -333,7 +402,11 @@ public class CrickTime : StaticUnitComponent
 		}
 		return 0f;
 	}
-
+    /// <summary>
+    /// 设置技能主管时间
+    /// </summary>
+    /// <param name="skill_id"></param>
+    /// <param name="time"></param>
 	public void SetChargeTime(string skill_id, float time)
 	{
 		if (!this.skillID.Contains(skill_id))
@@ -346,7 +419,11 @@ public class CrickTime : StaticUnitComponent
 			this.chargeCD[skill_id] = time;
 		}
 	}
-
+    /// <summary>
+    /// 获取技能主管时间
+    /// </summary>
+    /// <param name="skill_id"></param>
+    /// <returns></returns>
 	public float GetChargeTime(string skill_id)
 	{
 		if (this.chargeCD.ContainsKey(skill_id))

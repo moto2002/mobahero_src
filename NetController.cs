@@ -4,7 +4,9 @@ using MobaProtocol.Data;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 网络控制器组件
+/// </summary>
 public class NetController : UnitComponent
 {
 	private enum InterPState
@@ -156,7 +158,10 @@ public class NetController : UnitComponent
 	public override void OnExit()
 	{
 	}
-
+    /// <summary>
+    /// 设置网络控制器report模式
+    /// </summary>
+    /// <param name="report"></param>
 	public void SetReportMode(bool report)
 	{
 		this.mIsReportMode = report;

@@ -202,7 +202,9 @@ namespace MobaHeros.Pvp
 				return true;
 			}
 		}
-
+        /// <summary>
+        /// 是否是观察者，非对战方
+        /// </summary>
 		public bool IsObserver
 		{
 			get

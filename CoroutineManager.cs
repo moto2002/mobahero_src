@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+/// <summary>
+/// 异步协程任务管理器  --- 统一管理协程
+/// </summary>
 public class CoroutineManager
 {
 	private readonly List<Task> taskList;

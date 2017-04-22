@@ -35,7 +35,9 @@ public class Units : BaseEntity
 	public float m_Radius = 0.5f;
 
 	public float m_SelectRadius = 0.5f;
-
+    /// <summary>
+    /// 碰撞器高度值
+    /// </summary>
 	public float m_ColliderHeight = 0.5f;
 
 	public float m_fLiveTime = -1f;
@@ -54,16 +56,26 @@ public class Units : BaseEntity
 	private float m_hp_init_p = 1f;
 
 	private float m_mp_init_p = 1f;
-
+    /// <summary>
+    /// unit生命周期状态
+    /// </summary>
 	private UnitsLifeTime m_unitsLifeTime;
-
+    /// <summary>
+    /// unit控制类型
+    /// </summary>
 	private UnitControlType _unitControlType;
-
+    /// <summary>
+    /// 移动方向
+    /// </summary>
 	private Vector3 moveDirection;
-
+    /// <summary>
+    /// 攻击额外伤害
+    /// </summary>
 	[NonSerialized]
 	public float attackExtraDamage;
-
+    /// <summary>
+    /// 攻击伤害加成
+    /// </summary>
 	[NonSerialized]
 	public float attackMultipleDamage;
 
@@ -111,32 +123,54 @@ public class Units : BaseEntity
 	private float _lastSyncHp;
 
 	private Units parentUnit;
-
+    /// <summary>
+    /// 击杀计数
+    /// </summary>
 	[NonSerialized]
 	public int killNum;
-
+    /// <summary>
+    /// 奖励计数
+    /// </summary>
 	[NonSerialized]
 	public int rewardNum;
-
+    /// <summary>
+    /// 攻击计数
+    /// </summary>
 	[NonSerialized]
 	public int hitNum;
-
+    /// <summary>
+    /// 当前经验值
+    /// </summary>
 	[NonSerialized]
 	public int exp_cur;
-
+    /// <summary>
+    /// 辅助计数
+    /// </summary>
 	[NonSerialized]
 	public int assistantNum;
-
+    /// <summary>
+    /// 上次伤害记时
+    /// </summary>
 	private float hurtTime;
-
+    /// <summary>
+    /// 上次伤害的unit
+    /// </summary>
 	private Units m_lastHurtHero;
-
+    /// <summary>
+    /// 辅助unit及对应记时列表
+    /// </summary>
 	public Dictionary<Units, float> m_assistantDict = new Dictionary<Units, float>();
-
+    /// <summary>
+    /// 辅助unit的npc_id列表
+    /// </summary>
 	private List<string> m_assistantList = new List<string>();
-
+    /// <summary>
+    /// 冷却时间管理组件
+    /// </summary>
 	protected CrickTime crickTime;
-
+    /// <summary>
+    /// 时间同步组件(如果pvp，会同时处理pvp msg
+    /// </summary>
 	protected UnitsTimeSyncSystem timeSyncSystem;
 
 	public SurfaceManager surface;
@@ -273,31 +307,49 @@ public class Units : BaseEntity
 	private bool m_isLive;
 
 	private bool m_isSelected;
-
+    /// <summary>
+    /// 是否玩家
+    /// </summary>
 	[NonSerialized]
 	public bool isPlayer;
-
+    /// <summary>
+    /// 是否家（出生点)
+    /// </summary>
 	[NonSerialized]
 	public bool isHome;
-
+    /// <summary>
+    /// 是否塔
+    /// </summary>
 	[NonSerialized]
 	public bool isTower;
-
+    /// <summary>
+    /// 是否商店
+    /// </summary>
 	[NonSerialized]
 	public bool isShop;
-
+    /// <summary>
+    /// 是否建筑
+    /// </summary>
 	[NonSerialized]
 	public bool isBuilding;
-
+    /// <summary>
+    /// 是否物品
+    /// </summary>
 	[NonSerialized]
 	public bool isItem;
-
+    /// <summary>
+    /// 是否buff物品
+    /// </summary>
 	[NonSerialized]
 	public bool isBuffItem;
-
+    /// <summary>
+    /// 是否英雄
+    /// </summary>
 	[NonSerialized]
 	public bool isHero;
-
+    /// <summary>
+    /// 是否怪物
+    /// </summary>
 	[NonSerialized]
 	public bool isMonster;
 
@@ -349,15 +401,25 @@ public class Units : BaseEntity
 	private GameObject _newbieHintObj;
 
 	private List<MobaMessage> pvpSvrMsgList = new List<MobaMessage>();
-
+    /// <summary>
+    /// 动态unit组件列表
+    /// </summary>
 	private List<UnitComponent> dynamicComponents = new List<UnitComponent>();
-
+    /// <summary>
+    /// 静态unit组件列表
+    /// </summary>
 	private List<UnitComponent> staticComponents = new List<UnitComponent>();
-
+    /// <summary>
+    /// unit组件更新记时
+    /// </summary>
 	private float unitComponentUpdateDelaTime;
-
+    /// <summary>
+    /// unit组件更新时间间隔
+    /// </summary>
 	private float componentUpdatedelayTime = 0.17f;
-
+    /// <summary>
+    /// 伤害事件触发回调管理
+    /// </summary>
 	public event Callback<Units> OnWoundCallback
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -371,7 +433,9 @@ public class Units : BaseEntity
 			this.OnWoundCallback = (Callback<Units>)Delegate.Remove(this.OnWoundCallback, value);
 		}
 	}
-
+    /// <summary>
+    /// 死亡事件触发回调管理
+    /// </summary>
 	public event Callback<Units> OnDeathCallback
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -385,7 +449,9 @@ public class Units : BaseEntity
 			this.OnDeathCallback = (Callback<Units>)Delegate.Remove(this.OnDeathCallback, value);
 		}
 	}
-
+    /// <summary>
+    /// 重生事件触发回调管理
+    /// </summary>
 	public event Callback<Units> OnRebornCallback
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -399,7 +465,9 @@ public class Units : BaseEntity
 			this.OnRebornCallback = (Callback<Units>)Delegate.Remove(this.OnRebornCallback, value);
 		}
 	}
-
+    /// <summary>
+    /// attach(Units/UnitComponent?????)事件触发回调管理
+    /// </summary>
 	public event Callback<Units> OnAttackCallback
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -413,7 +481,9 @@ public class Units : BaseEntity
 			this.OnAttackCallback = (Callback<Units>)Delegate.Remove(this.OnAttackCallback, value);
 		}
 	}
-
+    /// <summary>
+    /// 技能触发调用事件触发回调管理
+    /// </summary>
 	public event Callback<Units> OnSkillCallback
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -427,7 +497,9 @@ public class Units : BaseEntity
 			this.OnSkillCallback = (Callback<Units>)Delegate.Remove(this.OnSkillCallback, value);
 		}
 	}
-
+    /// <summary>
+    /// 使用魔法事件触发回调管理
+    /// </summary>
 	public event Callback<float, float> OnUseMagic
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -441,7 +513,9 @@ public class Units : BaseEntity
 			this.OnUseMagic = (Callback<float, float>)Delegate.Remove(this.OnUseMagic, value);
 		}
 	}
-
+    /// <summary>
+    /// units死亡事件触发回调管理
+    /// </summary>
 	public static event Action<Units, Units> OnUnitsDead
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -455,7 +529,9 @@ public class Units : BaseEntity
 			Units.OnUnitsDead = (Action<Units, Units>)Delegate.Remove(Units.OnUnitsDead, value);
 		}
 	}
-
+    /// <summary>
+    /// units重生事件触发回调管理
+    /// </summary>
 	public static event Action<Units> OnUnitsRebirth
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -469,7 +545,9 @@ public class Units : BaseEntity
 			Units.OnUnitsRebirth = (Action<Units>)Delegate.Remove(Units.OnUnitsRebirth, value);
 		}
 	}
-
+    /// <summary>
+    /// units受伤事件触发回调管理
+    /// </summary>
 	public static event Action<Units, float> OnUnitsWound
 	{
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -483,13 +561,17 @@ public class Units : BaseEntity
 			Units.OnUnitsWound = (Action<Units, float>)Delegate.Remove(Units.OnUnitsWound, value);
 		}
 	}
-
+    /// <summary>
+    /// Unit类型
+    /// </summary>
 	public UnitType UnitType
 	{
 		get;
 		set;
 	}
-
+    /// <summary>
+    /// Unit的tag标记
+    /// </summary>
 	public new string tag
 	{
 		get
@@ -513,7 +595,9 @@ public class Units : BaseEntity
 			}
 		}
 	}
-
+    /// <summary>
+    /// 碰撞器中心点位置
+    /// </summary>
 	public Vector3 ColliderCenter
 	{
 		get
@@ -523,7 +607,9 @@ public class Units : BaseEntity
 			return position;
 		}
 	}
-
+    /// <summary>
+    /// 模型ID
+    /// </summary>
 	public string model_id
 	{
 		get
@@ -535,7 +621,9 @@ public class Units : BaseEntity
 			this.SetData<string>(DataType.ModelId, value);
 		}
 	}
-
+    /// <summary>
+    /// 特效ID
+    /// </summary>
 	public string effect_id
 	{
 		get
@@ -547,7 +635,9 @@ public class Units : BaseEntity
 			this.SetData<string>(DataType.EffectId, value);
 		}
 	}
-
+    /// <summary>
+    /// 最大hp值
+    /// </summary>
 	public float hp_max
 	{
 		get
@@ -555,7 +645,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.HpMax), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// hp值
+    /// </summary>
 	public float hp
 	{
 		get
@@ -563,7 +655,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.Hp), 0f, this.hp_max);
 		}
 	}
-
+    /// <summary>
+    /// 最大mp值
+    /// </summary>
 	public float mp_max
 	{
 		get
@@ -571,7 +665,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.MpMax), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 当前mp值
+    /// </summary>
 	public float mp
 	{
 		get
@@ -579,7 +675,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.Mp), 0f, this.mp_max);
 		}
 	}
-
+    /// <summary>
+    /// 等级
+    /// </summary>
 	public int level
 	{
 		get
@@ -595,7 +693,9 @@ public class Units : BaseEntity
 			this.SetData<int>(DataType.Level, value);
 		}
 	}
-
+    /// <summary>
+    /// 星级
+    /// </summary>
 	public int star
 	{
 		get
@@ -607,7 +707,9 @@ public class Units : BaseEntity
 			this.SetData<int>(DataType.Star, value);
 		}
 	}
-
+    /// <summary>
+    /// 品质
+    /// </summary>
 	public int quality
 	{
 		get
@@ -619,7 +721,9 @@ public class Units : BaseEntity
 			this.SetData<int>(DataType.Quality, value);
 		}
 	}
-
+    /// <summary>
+    /// 力量
+    /// </summary>
 	public float power
 	{
 		get
@@ -627,7 +731,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.Power), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 敏捷
+    /// </summary>
 	public float agile
 	{
 		get
@@ -635,7 +741,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.Agile), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 智力
+    /// </summary>
 	public float intelligence
 	{
 		get
@@ -643,7 +751,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.Intelligence), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// hp恢复值
+    /// </summary>
 	public float hp_restore
 	{
 		get
@@ -651,7 +761,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.HpRestore), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// mp恢复值
+    /// </summary>
 	public float mp_restore
 	{
 		get
@@ -659,7 +771,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.MpRestore), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 攻击力
+    /// </summary>
 	public float attack
 	{
 		get
@@ -667,7 +781,9 @@ public class Units : BaseEntity
 			return this.GetAttr(AttrType.Attack);
 		}
 	}
-
+    /// <summary>
+    /// 防御
+    /// </summary>
 	public float armor
 	{
 		get
@@ -675,7 +791,9 @@ public class Units : BaseEntity
 			return this.GetAttr(AttrType.Armor);
 		}
 	}
-
+    /// <summary>
+    /// 减物防百分比
+    /// </summary>
 	public float armor_cut_percentage
 	{
 		get
@@ -683,7 +801,9 @@ public class Units : BaseEntity
 			return Mathf.Clamp01(this.GetAttr(AttrType.ArmorCut_Percentage));
 		}
 	}
-
+    /// <summary>
+    /// 减魔防百分比
+    /// </summary>
 	public float magic_resist_cut_percentage
 	{
 		get
@@ -691,7 +811,9 @@ public class Units : BaseEntity
 			return Mathf.Clamp01(this.GetAttr(AttrType.MagicResistanceCut_Percentage));
 		}
 	}
-
+    /// <summary>
+    /// 减物防 -- 具体值
+    /// </summary>
 	public float armor_cut
 	{
 		get
@@ -699,7 +821,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.ArmorCut), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 属性闪避
+    /// </summary>
 	public float dodge_prop
 	{
 		get
@@ -707,7 +831,9 @@ public class Units : BaseEntity
 			return this.GetAttr(AttrType.DodgeProp);
 		}
 	}
-
+    /// <summary>
+    /// 属性打击
+    /// </summary>
 	public float hit_prop
 	{
 		get
@@ -715,7 +841,9 @@ public class Units : BaseEntity
 			return this.GetAttr(AttrType.HitProp);
 		}
 	}
-
+    /// <summary>
+    /// 移动速度
+    /// </summary>
 	public float move_speed
 	{
 		get
@@ -723,7 +851,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.MoveSpeed), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 攻击速度
+    /// </summary>
 	public float attack_speed
 	{
 		get
@@ -731,7 +861,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.AttackSpeed), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 攻击时间长度
+    /// </summary>
 	public float attack_timelenth
 	{
 		get
@@ -743,7 +875,9 @@ public class Units : BaseEntity
 			return 1f / this.attack_speed;
 		}
 	}
-
+    /// <summary>
+    /// 物理暴击属性
+    /// </summary>
 	public float physic_crit_prop
 	{
 		get
@@ -823,7 +957,9 @@ public class Units : BaseEntity
 			return this.unitCollider.OriginalTeamType;
 		}
 	}
-
+    /// <summary>
+    /// 物理攻击绝对加成
+    /// </summary>
 	public float additive_physic_attack_abs
 	{
 		get
@@ -831,7 +967,9 @@ public class Units : BaseEntity
 			return 0f;
 		}
 	}
-
+    /// <summary>
+    /// 物理攻击相对加成
+    /// </summary>
 	public float additive_physic_attack_relative
 	{
 		get
@@ -839,7 +977,9 @@ public class Units : BaseEntity
 			return 0f;
 		}
 	}
-
+    /// <summary>
+    /// 魔法攻击绝对加成
+    /// </summary>
 	public float additive_magic_attack_abs
 	{
 		get
@@ -847,7 +987,9 @@ public class Units : BaseEntity
 			return 0f;
 		}
 	}
-
+    /// <summary>
+    /// 魔法攻击相对加成
+    /// </summary>
 	public float additive_magic_attack_relative
 	{
 		get
@@ -855,7 +997,9 @@ public class Units : BaseEntity
 			return 0f;
 		}
 	}
-
+    /// <summary>
+    /// 真实攻击绝对加成
+    /// </summary>
 	public float additive_real_attack_abs
 	{
 		get
@@ -863,7 +1007,9 @@ public class Units : BaseEntity
 			return 0f;
 		}
 	}
-
+    /// <summary>
+    /// 真实攻击相对加成
+    /// </summary>
 	public float additive_real_attack_relative
 	{
 		get
@@ -871,7 +1017,9 @@ public class Units : BaseEntity
 			return 0f;
 		}
 	}
-
+    /// <summary>
+    /// 治疗绝对加成
+    /// </summary>
 	public float additive_treatment_abs
 	{
 		get
@@ -879,7 +1027,9 @@ public class Units : BaseEntity
 			return 0f;
 		}
 	}
-
+    /// <summary>
+    /// 治疗相对教程
+    /// </summary>
 	public float additive_treatment_relative
 	{
 		get
@@ -951,7 +1101,9 @@ public class Units : BaseEntity
 			return 0f;
 		}
 	}
-
+    /// <summary>
+    /// 攻击范围
+    /// </summary>
 	public float attack_range
 	{
 		get
@@ -959,7 +1111,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.AttackRange), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 警戒范围
+    /// </summary>
 	public float warning_range
 	{
 		get
@@ -967,7 +1121,9 @@ public class Units : BaseEntity
 			return this.GetAttr(AttrType.WarningRange);
 		}
 	}
-
+    /// <summary>
+    /// 雾效果范围
+    /// </summary>
 	public float fog_range
 	{
 		get
@@ -975,7 +1131,9 @@ public class Units : BaseEntity
 			return this.GetAttr(AttrType.FogRange);
 		}
 	}
-
+    /// <summary>
+    /// 真实视线范围
+    /// </summary>
 	public float realSight_range
 	{
 		get
@@ -983,7 +1141,9 @@ public class Units : BaseEntity
 			return this.GetAttr(AttrType.RealSightRange);
 		}
 	}
-
+    /// <summary>
+    /// 护盾
+    /// </summary>
 	public float shield
 	{
 		get
@@ -991,7 +1151,9 @@ public class Units : BaseEntity
 			return this.Clamp(this.GetAttr(AttrType.Shield), 0f, 3.40282347E+38f);
 		}
 	}
-
+    /// <summary>
+    /// 攻击类型
+    /// </summary>
 	public int atk_type
 	{
 		get
@@ -1016,7 +1178,9 @@ public class Units : BaseEntity
 			this.SetData<float>(DataType.AttrFactor, value);
 		}
 	}
-
+    /// <summary>
+    /// 攻击列表
+    /// </summary>
 	public string[] attacks
 	{
 		get
@@ -1028,7 +1192,9 @@ public class Units : BaseEntity
 			this.SetData<string[]>(DataType.Attacks, value);
 		}
 	}
-
+    /// <summary>
+    /// 技能列表
+    /// </summary>
 	public string[] skills
 	{
 		get
@@ -1040,7 +1206,9 @@ public class Units : BaseEntity
 			this.SetData<string[]>(DataType.Skills, value);
 		}
 	}
-
+    /// <summary>
+    /// 道具列表
+    /// </summary>
 	public string[] equips
 	{
 		get
@@ -1052,7 +1220,9 @@ public class Units : BaseEntity
 			this.data.SetData(DataType.Equips, value);
 		}
 	}
-
+    /// <summary>
+    /// 魂石列表
+    /// </summary>
 	public string[] soulstones
 	{
 		get
@@ -1208,7 +1378,9 @@ public class Units : BaseEntity
 			this.SetData<int>(DataType.AIType, value);
 		}
 	}
-
+    /// <summary>
+    /// unit生命周期状态
+    /// </summary>
 	public UnitsLifeTime unitsLifeTime
 	{
 		get
@@ -1216,7 +1388,9 @@ public class Units : BaseEntity
 			return this.m_unitsLifeTime;
 		}
 	}
-
+    /// <summary>
+    /// unit控制类型
+    /// </summary>
 	public UnitControlType unitControlType
 	{
 		get
@@ -1435,7 +1609,9 @@ public class Units : BaseEntity
 			return this.m_assistantList;
 		}
 	}
-
+    /// <summary>
+    /// 是否野怪
+    /// </summary>
 	public bool IsWildMonster
 	{
 		get
@@ -1560,7 +1736,9 @@ public class Units : BaseEntity
 			this.m_renders = value;
 		}
 	}
-
+    /// <summary>
+    /// 角色特效
+    /// </summary>
 	public CharacterEffect mCharacterEffect
 	{
 		get
@@ -1676,7 +1854,9 @@ public class Units : BaseEntity
 			return this.moveController != null && this.moveController.isMoving;
 		}
 	}
-
+    /// <summary>
+    /// 是否活着
+    /// </summary>
 	public bool isLive
 	{
 		get

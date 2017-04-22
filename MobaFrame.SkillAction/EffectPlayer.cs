@@ -3,12 +3,22 @@ using UnityEngine;
 
 namespace MobaFrame.SkillAction
 {
+    /// <summary>
+    /// 效果播放器类
+    /// </summary>
 	public class EffectPlayer : BasePlayer
 	{
+        /// <summary>
+        /// 技能节点id
+        /// </summary>
 		public int skillNodeId;
-
+        /// <summary>
+        /// 执行id
+        /// </summary>
 		public string performId;
-
+        /// <summary>
+        /// 退出时间
+        /// </summary>
 		public float exitTime;
 
 		[SerializeField]
@@ -45,7 +55,9 @@ namespace MobaFrame.SkillAction
 				return this.m_Animator;
 			}
 		}
-
+        /// <summary>
+        /// 初始化获取相关对象引用
+        /// </summary>
 		private void Awake()
 		{
 			if (this.m_particleSystems == null || this.m_particleSystems.Length == 0)
@@ -66,7 +78,9 @@ namespace MobaFrame.SkillAction
 		private void OnDestroy()
 		{
 		}
-
+        /// <summary>
+        /// 开始播放效果
+        /// </summary>
 		public override void Play()
 		{
 			if (this.OnPlayCallback != null)
@@ -74,7 +88,9 @@ namespace MobaFrame.SkillAction
 				this.OnPlayCallback(this.skillNodeId);
 			}
 		}
-
+        /// <summary>
+        /// 停止播放效果
+        /// </summary>
 		public override void Stop()
 		{
 			if (this.OnStopCallback != null)
@@ -82,7 +98,10 @@ namespace MobaFrame.SkillAction
 				this.OnStopCallback(this.skillNodeId);
 			}
 		}
-
+        /// <summary>
+        /// 添加子效果对象
+        /// </summary>
+        /// <param name="effect"></param>
 		public void AddEffect(GameObject effect)
 		{
 			if (effect != null)
@@ -90,7 +109,10 @@ namespace MobaFrame.SkillAction
 				effect.transform.parent = base.transform;
 			}
 		}
-
+        /// <summary>
+        /// 启用渲染器渲染或禁用
+        /// </summary>
+        /// <param name="bIsShow"></param>
 		public void ShowRenders(bool bIsShow)
 		{
 			if (this.m_Render != null)

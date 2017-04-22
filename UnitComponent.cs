@@ -3,8 +3,13 @@ using UnityEngine;
 
 public class UnitComponent : UComponent<Units>
 {
+    /// <summary>
+    /// 怪物是否执行update更新
+    /// </summary>
 	public bool donotUpdateByMonster;
-
+    /// <summary>
+    /// unit组件协程管理器
+    /// </summary>
 	protected CoroutineManager m_CoroutineManager = new CoroutineManager();
 
 	private GameObject m_gameObject;
@@ -57,7 +62,10 @@ public class UnitComponent : UComponent<Units>
 	{
 		this.self = self;
 	}
-
+    /// <summary>
+    /// 需要update更新
+    /// </summary>
+    /// <returns></returns>
 	public virtual bool needUpdate()
 	{
 		return true;

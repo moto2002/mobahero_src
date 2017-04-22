@@ -9,9 +9,13 @@ namespace Assets.Scripts.Character.Control
 		protected bool isActive = true;
 
 		private ControlEventManager tEventManager;
-
+        /// <summary>
+        /// 触发事件列表
+        /// </summary>
 		private List<TriggerEvent2> listTrigger;
-
+        /// <summary>
+        /// 是否已初始化
+        /// </summary>
 		private bool inital;
 
 		public BattleTouchController()
@@ -21,7 +25,10 @@ namespace Assets.Scripts.Character.Control
 		public BattleTouchController(Units self) : base(self)
 		{
 		}
-
+        /// <summary>
+        /// 启用或者禁用
+        /// </summary>
+        /// <param name="b"></param>
 		public void Enable(bool b)
 		{
 			this.isActive = b;
@@ -80,7 +87,9 @@ namespace Assets.Scripts.Character.Control
 			triggerParamTouch.FingerID = tEvent.id;
 			TriggerManager2.Instance.Trigger2(triggerParamTouch);
 		}
-
+        /// <summary>
+        /// 初始化
+        /// </summary>
 		private void Init()
 		{
 			this.listTrigger = new List<TriggerEvent2>();

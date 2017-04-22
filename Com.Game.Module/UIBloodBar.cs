@@ -53,7 +53,9 @@ namespace Com.Game.Module
 
 		[SerializeField]
 		private UISprite m_backgroundSprite;
-
+        /// <summary>
+        /// debuff名称文本标签
+        /// </summary>
 		[SerializeField]
 		private UILabel m_debuffName;
 
@@ -99,10 +101,14 @@ namespace Com.Game.Module
 
 		[NonSerialized]
 		public bool m_IsActive = true;
-
+        /// <summary>
+        /// 当前的可视性
+        /// </summary>
 		[NonSerialized]
 		public bool m_isCurVisible = true;
-
+        /// <summary>
+        /// 血条可视性是否改变
+        /// </summary>
 		[NonSerialized]
 		public bool isChangeVisible = true;
 
@@ -167,7 +173,9 @@ namespace Com.Game.Module
 		private bool _lastUpdate;
 
 		private bool _needUpdate;
-
+        /// <summary>
+        /// debuff效果动画计数
+        /// </summary>
 		private int animCount;
 
 		public string BloodType
@@ -530,7 +538,9 @@ namespace Com.Game.Module
 			}
 			this.TryUpdateSlideHealthBarAnim();
 		}
-
+        /// <summary>
+        /// 跳过更新
+        /// </summary>
 		public void SkipUpdate()
 		{
 			this._needUpdate = false;
@@ -813,7 +823,9 @@ namespace Com.Game.Module
 			this.m_CoroutineManagerMark.StopAllCoroutine();
 			this.animCount = 0;
 		}
-
+        /// <summary>
+        /// 出生初始化接口
+        /// </summary>
 		public void On_Spawn()
 		{
 			this.animCount = 0;
@@ -827,18 +839,26 @@ namespace Com.Game.Module
 				this.m_SummonerName.gameObject.SetActive(true);
 			}
 		}
-
+        /// <summary>
+        /// 消失接口
+        /// </summary>
 		public void On_Despawn()
 		{
 			this.m_CoroutineManagerMark.StopAllCoroutine();
 			this.animCount = 0;
 			base.StopCoroutine("ShowDebuffAnim");
 		}
-
+        /// <summary>
+        /// 设置AI状态
+        /// </summary>
+        /// <param name="str"></param>
 		public void SetAIState(string str)
 		{
 		}
-
+        /// <summary>
+        /// 设置血条alpah值
+        /// </summary>
+        /// <param name="alpha"></param>
 		public void SetBarAlpha(float alpha)
 		{
 			if (this.m_frontBloodSprite != null)
@@ -870,7 +890,11 @@ namespace Com.Game.Module
 				this.m_ExperienceBar.alpha = alpha;
 			}
 		}
-
+        /// <summary>
+        /// 设置debuff图标等，显示debuff相关信息视图
+        /// </summary>
+        /// <param name="active"></param>
+        /// <param name="debuffName"></param>
 		public void SetDebuffIcon(bool active, string debuffName = "")
 		{
 			if (this.m_debuffName == null)
@@ -901,7 +925,7 @@ namespace Com.Game.Module
 			else
 			{
 				this.animCount--;
-				if (this.animCount <= 0)
+				if (this.animCount <= 0)//如果计数为0,隐藏debuff相关界面
 				{
 					PerfTools.SetVisible(this.m_debuffName.gameObject, false);
 					this.m_debuffName.animation.Stop();
@@ -915,7 +939,10 @@ namespace Com.Game.Module
 				}
 			}
 		}
-
+        /// <summary>
+        /// 显示debuff动画
+        /// </summary>
+        /// <returns></returns>
 		[DebuggerHidden]
 		private IEnumerator ShowDebuffAnim()
 		{
@@ -923,7 +950,12 @@ namespace Com.Game.Module
 			<ShowDebuffAnim>c__IteratorF.<>f__this = this;
 			return <ShowDebuffAnim>c__IteratorF;
 		}
-
+        /// <summary>
+        /// 显示名称信息
+        /// </summary>
+        /// <param name="isShow"></param>
+        /// <param name="name"></param>
+        /// <param name="userid"></param>
 		public void ShowName(bool isShow, string name, int userid = 0)
 		{
 			if (this.m_SummonerName == null)
@@ -944,7 +976,11 @@ namespace Com.Game.Module
 				this.m_SummonerName.gameObject.GetComponent<AllochroicLabelChecker>().RenderLabel(readyPlayerSampleInfo.CharmRankvalue);
 			}
 		}
-
+        /// <summary>
+        /// 显示AI计时信息
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="isActive"></param>
 		public void ShowAITimer(int time, bool isActive)
 		{
 			if (!this.m_targetUnit.isPlayer)
@@ -1146,7 +1182,11 @@ namespace Com.Game.Module
 		private void ShowMainHeroMark()
 		{
 		}
-
+        /// <summary>
+        /// 改变游戏对象layer
+        /// </summary>
+        /// <param name="objct"></param>
+        /// <param name="layer"></param>
 		private void ChangeLayer(GameObject objct, string layer = "Unit")
 		{
 			objct.layer = LayerMask.NameToLayer(layer);
@@ -1158,7 +1198,10 @@ namespace Com.Game.Module
 				transform.gameObject.layer = LayerMask.NameToLayer(layer);
 			}
 		}
-
+        /// <summary>
+        /// 需改渲染器渲染顺序
+        /// </summary>
+        /// <param name="obj"></param>
 		private void ChangeRender(GameObject obj)
 		{
 			ParticleSystem[] componentsInChildren = obj.GetComponentsInChildren<ParticleSystem>();

@@ -5,14 +5,23 @@ namespace Assets.Scripts.Character.Control
 {
 	public class ControlEvent
 	{
+        /// <summary>
+        /// 触摸事件类型
+        /// </summary>
 		public EControlType type;
 
 		public int id = -1;
-
+        /// <summary>
+        /// 按下的时间戳
+        /// </summary>
 		public float touchDownTimeStamp;
-
+        /// <summary>
+        /// 触摸位置
+        /// </summary>
 		public Vector2 position;
-
+        /// <summary>
+        /// 事件生成时间戳
+        /// </summary>
 		public float createTimeStamp;
 
 		public override string ToString()
@@ -25,7 +34,12 @@ namespace Assets.Scripts.Character.Control
 				this.position.y
 			});
 		}
-
+        /// <summary>
+        /// 触摸事件排序对比
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
 		public static int CompareTouchEvent(ControlEvent a, ControlEvent b)
 		{
 			if (a == null && b == null)

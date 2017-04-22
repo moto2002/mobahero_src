@@ -9,6 +9,9 @@ using UnityEngine;
 
 public class CharacterEffect : MonoBehaviour
 {
+    /// <summary>
+    /// shader效果类型
+    /// </summary>
 	private enum eShaderType
 	{
 		Outline,
@@ -62,26 +65,42 @@ public class CharacterEffect : MonoBehaviour
 
 	[NonSerialized]
 	public float m_rimAlpha = 1f;
-
+    /// <summary>
+    /// 是否激活
+    /// </summary>
 	[NonSerialized]
 	public bool isActive;
-
+    /// <summary>
+    /// 额外粒子效果列表
+    /// </summary>
 	public ParticleSystem[] ExtraParticleSystem;
-
+    /// <summary>
+    /// 额外渲染器列表
+    /// </summary>
 	public Renderer[] ExtraRender;
-
+    /// <summary>
+    /// 阴影高度
+    /// </summary>
 	private float shadowHeight;
 
 	private CoroutineManager alphaCoroutineManager = new CoroutineManager();
-
+    /// <summary>
+    /// alpha变化task
+    /// </summary>
 	private Task alphaTask;
 
 	private Tweener tweenerAlpha;
-
+    /// <summary>
+    /// 是否启用轮廓线效果
+    /// </summary>
 	private static bool enabeloutline = true;
-
+    /// <summary>
+    /// 启用轮廓线级别
+    /// </summary>
 	private static int enabeloutlineLevel = -1;
-
+    /// <summary>
+    /// 是否锁定效果
+    /// </summary>
 	public bool IsLockEffect
 	{
 		get
@@ -89,7 +108,9 @@ public class CharacterEffect : MonoBehaviour
 			return this.self && this.self.isLive && this.self.IsLockCharaEffect;
 		}
 	}
-
+    /// <summary>
+    /// 初始化，并获取资源引用
+    /// </summary>
 	public void Awake()
 	{
 		if (CharacterEffect.m_outlineShader == null)
@@ -130,17 +151,27 @@ public class CharacterEffect : MonoBehaviour
 		this.m_rimAlpha = 1f;
 		this.cacheGameObject = base.gameObject;
 	}
-
+    /// <summary>
+    /// 获取轮廓线shader
+    /// </summary>
+    /// <returns></returns>
 	public Shader GetOutLineShader()
 	{
 		return CharacterEffect.m_outlineShadersd;
 	}
-
+    /// <summary>
+    /// 设置渲染器列表
+    /// </summary>
+    /// <param name="renders"></param>
 	public void SetRenderer(Renderer[] renders)
 	{
 		this.m_renderers = renders;
 	}
-
+    /// <summary>
+    /// 初始化渲染器等属性
+    /// </summary>
+    /// <param name="selfUnit"></param>
+    /// <param name="renders"></param>
 	public void InitRenderer(Units selfUnit, Renderer[] renders)
 	{
 		this.self = selfUnit;
@@ -150,7 +181,10 @@ public class CharacterEffect : MonoBehaviour
 		this.CastShadows(true);
 		this.alphaCoroutineManager.StopAllCoroutine();
 	}
-
+    /// <summary>
+    /// 获取场景关卡类型
+    /// </summary>
+    /// <returns></returns>
 	public int getScenetype()
 	{
 		SysBattleSceneVo dataById = BaseDataMgr.instance.GetDataById<SysBattleSceneVo>(LevelManager.CurLevelId);
@@ -160,10 +194,13 @@ public class CharacterEffect : MonoBehaviour
 		}
 		return -1;
 	}
-
+    /// <summary>
+    /// 设置是否英雄,并据此设置渲染器相关属性
+    /// </summary>
+    /// <param name="isHero"></param>
 	public void SetIsHero(bool isHero)
 	{
-		if (CharacterEffect.NoEditMat)
+		if (CharacterEffect.NoEditMat)//没有编辑材质
 		{
 			return;
 		}
@@ -178,7 +215,7 @@ public class CharacterEffect : MonoBehaviour
 			{
 				if (this.m_renderers[i] is ParticleSystemRenderer)
 				{
-					if (this.m_bIsHero)
+					if (this.m_bIsHero) //英雄同monster位于不同Layer
 					{
 						this.m_renderers[i].gameObject.layer = Layer.UnitLayer;
 					}
@@ -205,7 +242,10 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 设置轮廓线效果颜色
+    /// </summary>
+    /// <param name="color"></param>
 	public void SetColor_Outline(Color color)
 	{
 		if (this.m_renderers == null)
@@ -228,7 +268,10 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 设置轮廓线效果width
+    /// </summary>
+    /// <param name="width"></param>
 	public void SetOutlineWidth(float width)
 	{
 		if (this.m_renderers == null)
@@ -261,7 +304,10 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 设置阴影高度
+    /// </summary>
+    /// <param name="h"></param>
 	public void SetShadowHeight(float h)
 	{
 		if (this.m_renderers == null)
@@ -281,7 +327,9 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 使用轮廓线效果
+    /// </summary>
 	public void UseOutline()
 	{
 		if (this.IsLockEffect)
@@ -308,7 +356,9 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 使用边缘高亮效果
+    /// </summary>
 	public void UseRimlight()
 	{
 		if (!this.isActive)
@@ -354,7 +404,9 @@ public class CharacterEffect : MonoBehaviour
 			this.m_timeRimlight = this.m_rimlightWidth;
 		}
 	}
-
+    /// <summary>
+    /// 使用石化效果
+    /// </summary>
 	public void UsePetrifaction()
 	{
 		if (this.IsLockEffect)
@@ -375,7 +427,13 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 显示alpha效果
+    /// </summary>
+    /// <param name="playOrStopPS"></param>
+    /// <param name="endAlpha"></param>
+    /// <param name="duration"></param>
+    /// <param name="delay"></param>
 	public void ShowAlpha(bool playOrStopPS, float endAlpha = 1f, float duration = 0.02f, float delay = 0f)
 	{
 		if (CharacterEffect.NoEditMat)
@@ -386,7 +444,9 @@ public class CharacterEffect : MonoBehaviour
 		this.alphaCoroutineManager.StopAllCoroutine();
 		this.alphaTask = this.alphaCoroutineManager.StartCoroutine(this.TweenAlpha(playOrStopPS, endAlpha, duration, delay), true);
 	}
-
+    /// <summary>
+    /// 停止所有alpha效果
+    /// </summary>
 	public void StopAlphaTween()
 	{
 		if (this.tweenerAlpha != null)
@@ -398,7 +458,9 @@ public class CharacterEffect : MonoBehaviour
 			this.alphaTask.Stop();
 		}
 	}
-
+    /// <summary>
+    /// 停止所有alpha效果协程
+    /// </summary>
 	public void StopAlphaCoroutine()
 	{
 		if (this.alphaCoroutineManager != null)
@@ -406,7 +468,10 @@ public class CharacterEffect : MonoBehaviour
 			this.alphaCoroutineManager.StopAllCoroutine();
 		}
 	}
-
+    /// <summary>
+    /// 设置整体alpha值
+    /// </summary>
+    /// <param name="alpha"></param>
 	public void SetAlpha(float alpha)
 	{
 		if (CharacterEffect.NoEditMat)
@@ -439,11 +504,17 @@ public class CharacterEffect : MonoBehaviour
 		}
 		this.updataherovisible(this.self, alpha);
 	}
-
+    /// <summary>
+    /// 更新unit的透明度
+    /// </summary>
+    /// <param name="unts"></param>
+    /// <param name="alp"></param>
 	private void updataherovisible(Units unts, float alp)
 	{
 	}
-
+    /// <summary>
+    /// 透明度更新
+    /// </summary>
 	private void OnAlphaUpdate()
 	{
 		if (this.m_renderers == null)
@@ -459,7 +530,10 @@ public class CharacterEffect : MonoBehaviour
 		}
 		this.updataherovisible(this.self, this.m_rimAlpha);
 	}
-
+    /// <summary>
+    /// 开始或停止的初始alpha
+    /// </summary>
+    /// <param name="playOrStopPS"></param>
 	private void OnAlphaStart(bool playOrStopPS)
 	{
 		if (this.m_renderers == null)
@@ -553,7 +627,10 @@ public class CharacterEffect : MonoBehaviour
 		<TweenAlpha>c__Iterator.<>f__this = this;
 		return <TweenAlpha>c__Iterator;
 	}
-
+    /// <summary>
+    /// 显示或关闭粒子效果
+    /// </summary>
+    /// <param name="playOrStopPS"></param>
 	public void ShowParticle(bool playOrStopPS)
 	{
 		this.OnAlphaStart(playOrStopPS);
@@ -571,7 +648,10 @@ public class CharacterEffect : MonoBehaviour
 		}
 		this.CastShadows(playOrStopPS);
 	}
-
+    /// <summary>
+    /// 启用或关闭投影
+    /// </summary>
+    /// <param name="b"></param>
 	public void CastShadows(bool b)
 	{
 		if (this.m_renderers == null)
@@ -593,7 +673,10 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 设置粒子效果是否启用显示
+    /// </summary>
+    /// <param name="isShow"></param>
 	public void SetParticlesVisible(bool isShow)
 	{
 		if (this.cacheGameObject == null)
@@ -634,14 +717,16 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 更新角色效果类型
+    /// </summary>
 	private void Update()
 	{
 		if (this.self == null)
 		{
 			return;
 		}
-		if (!this.self.isLive)
+		if (!this.self.isLive)//角色死亡，不更新
 		{
 			return;
 		}
@@ -686,7 +771,9 @@ public class CharacterEffect : MonoBehaviour
 			this.m_curShaderType = CharacterEffect.eShaderType.Outline;
 		}
 	}
-
+    /// <summary>
+    /// 更新边缘光效果宽度
+    /// </summary>
 	private void UpdateRimlightWidth()
 	{
 		if (this.m_renderers == null)
@@ -702,7 +789,9 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 使用渐变效果
+    /// </summary>
 	public void UseGrow()
 	{
 		if (this.IsLockEffect)
@@ -722,7 +811,10 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 选中英雄效果，指定特定选中颜色
+    /// </summary>
+    /// <param name="selectColor"></param>
 	public void SelectHero(Color selectColor)
 	{
 		if (this.m_renderers == null)
@@ -741,7 +833,10 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 选中怪物效果，指定怪物选中的颜色
+    /// </summary>
+    /// <param name="selectColor"></param>
 	public void SelectMonster(Color selectColor)
 	{
 		if (this.m_renderers == null)
@@ -761,7 +856,11 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 取消英雄选中
+    /// </summary>
+    /// <param name="baseColor"></param>
+    /// <param name="outlineColor"></param>
 	public void DeselectHero(Color baseColor, Color outlineColor)
 	{
 		if (this.m_renderers == null)
@@ -780,7 +879,11 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 取消选中monster效果
+    /// </summary>
+    /// <param name="baseShader"></param>
+    /// <param name="baseColor"></param>
 	public void DeselectMonster(Shader baseShader, Color baseColor)
 	{
 		if (this.m_renderers == null)
@@ -799,12 +902,18 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 检查是否是有效的可选择渲染器游戏对象
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
 	private bool CheckRenderer(int index)
 	{
 		return this.m_renderers != null && (this.m_renderers[index] == null || this.m_renderers[index].gameObject.name == "Shadow" || this.m_renderers[index].gameObject.name == "MonsterSelect");
 	}
-
+    /// <summary>
+    /// 隐藏模型显示
+    /// </summary>
 	public void HideModel()
 	{
 		if (this.m_renderers == null)
@@ -819,7 +928,9 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 恢复模型显示
+    /// </summary>
 	public void RevertModel()
 	{
 		if (this.m_renderers == null)
@@ -834,7 +945,9 @@ public class CharacterEffect : MonoBehaviour
 			}
 		}
 	}
-
+    /// <summary>
+    /// 设置外部闪光效果
+    /// </summary>
 	public void SetOutFlash()
 	{
 		if (this.IsLockEffect)

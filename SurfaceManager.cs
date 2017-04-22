@@ -19,7 +19,9 @@ public class SurfaceManager : UnitComponent
 	private ResourceHandle _mTargetIcon;
 
 	private ResourceHandle _mainPlayerIcon;
-
+    /// <summary>
+    /// 缓存游戏对象引用
+    /// </summary>
 	public GameObject cacheGameObj;
 
 	private Shader m_baseShader;
@@ -39,7 +41,9 @@ public class SurfaceManager : UnitComponent
 	private BoxCollider m_boxCollider;
 
 	public Material material;
-
+    /// <summary>
+    /// 缓存原始shader引用
+    /// </summary>
 	public Shader sourceShader;
 
 	public bool isChangePlayer;
@@ -51,11 +55,15 @@ public class SurfaceManager : UnitComponent
 	private float animTime;
 
 	private List<Material> mats = new List<Material>(4);
-
+    /// <summary>
+    /// 死亡材质
+    /// </summary>
 	private static Material deathMat;
 
 	public Transform ShadowTexture;
-
+    /// <summary>
+    /// 角色效果引用
+    /// </summary>
 	protected CharacterEffect mCharacterEffect;
 
 	private bool _hasHud;
@@ -196,25 +204,33 @@ public class SurfaceManager : UnitComponent
 			}
 		}
 	}
-
+    /// <summary>
+    /// 血条本地缩放
+    /// </summary>
 	public Vector3 HudbarLocalScale
 	{
 		get;
 		private set;
 	}
-
+    /// <summary>
+    /// 血条高度
+    /// </summary>
 	public float HudbarHeight
 	{
 		get;
 		private set;
 	}
-
+    /// <summary>
+    /// 血条世界坐标
+    /// </summary>
 	public Vector3 HudbarWorldPos
 	{
 		get;
 		private set;
 	}
-
+    /// <summary>
+    /// 死亡材质
+    /// </summary>
 	public static Material DeathMat
 	{
 		get
@@ -302,7 +318,10 @@ public class SurfaceManager : UnitComponent
 		}
 		this._hasHud = this.IsHaveHudBarAndHudText();
 	}
-
+    /// <summary>
+    /// 设置血条显示或隐藏
+    /// </summary>
+    /// <param name="inIsMyTeam"></param>
 	public void SetBloodBar(bool inIsMyTeam)
 	{
 		if (this.mHpBar != null)
@@ -310,7 +329,10 @@ public class SurfaceManager : UnitComponent
 			this.mHpBar.SetBloodBar(inIsMyTeam);
 		}
 	}
-
+    /// <summary>
+    /// 更新hud
+    /// </summary>
+    /// <param name="visible">是否可视</param>
 	public void UpdateHud(bool visible)
 	{
 		if (!this._hasHud)
@@ -330,7 +352,7 @@ public class SurfaceManager : UnitComponent
 			}
 			return;
 		}
-		if (!this.mHpBar)
+		if (!this.mHpBar)  //如果没有血条，创建血条
 		{
 			this.mHpBar = Singleton<CharacterView>.Instance.CreateHudBar(this.self);
 			if (this.mHpBar == null)
@@ -376,12 +398,17 @@ public class SurfaceManager : UnitComponent
 			break;
 		}
 	}
-
+    /// <summary>
+    /// 检测血条是否在屏幕空间内(可视的)
+    /// </summary>
+    /// <returns></returns>
 	private bool IsBarVisibleInScreen()
 	{
 		return this._screenPosition.x >= (float)(-(float)this.marginX) && this._screenPosition.x <= (float)(Screen.width + this.marginX) && this._screenPosition.y >= (float)(-(float)this.marginY) && this._screenPosition.y <= (float)(Screen.height + this.marginY);
 	}
-
+    /// <summary>
+    /// 检查hud是否需要更新
+    /// </summary>
 	private void CheckNeedHudUpdate()
 	{
 		this._screenPosition = this.mainCamera.WorldToScreenPoint(this.self.transform.position + new Vector3(0f, this.HudbarHeight, 0f));
@@ -588,7 +615,9 @@ public class SurfaceManager : UnitComponent
 			this.mCharacterEffect.HideModel();
 		}
 	}
-
+    /// <summary>
+    /// 恢复模型显示
+    /// </summary>
 	public void RevertModel()
 	{
 		if (this.mCharacterEffect != null)
@@ -1032,7 +1061,10 @@ public class SurfaceManager : UnitComponent
 			this._mainPlayerIcon = null;
 		}
 	}
-
+    /// <summary>
+    /// 标记玩家和非玩家
+    /// </summary>
+    /// <param name="isplayer"></param>
 	public void MarkAsPlayer(bool isplayer)
 	{
 		if (isplayer)
@@ -1066,7 +1098,10 @@ public class SurfaceManager : UnitComponent
 			attacker.SetOutline(MyColor.Blue, 0.08f);
 		}
 	}
-
+    /// <summary>
+    /// 清理回收
+    /// </summary>
+    /// <param name="isRevertMaterial">是否恢复效果材质显示</param>
 	public void ClearSurface(bool isRevertMaterial = true)
 	{
 		this.ClearTargetAndMainPool();
@@ -1077,7 +1112,9 @@ public class SurfaceManager : UnitComponent
 		this.DestroyHUDBarCallBack();
 		this.DestroyHUDBar();
 	}
-
+    /// <summary>
+    /// 销毁血条
+    /// </summary>
 	private void DestroyHUDBar()
 	{
 		if (this.mHpBar != null)
@@ -1086,7 +1123,9 @@ public class SurfaceManager : UnitComponent
 		}
 		this.mHpBar = null;
 	}
-
+    /// <summary>
+    /// 销毁hudBar回调事件
+    /// </summary>
 	private void DestroyHUDBarCallBack()
 	{
 		if (this.mHpBar != null)
@@ -1094,7 +1133,9 @@ public class SurfaceManager : UnitComponent
 			this.mHpBar.UnRegisterEvent();
 		}
 	}
-
+    /// <summary>
+    /// 销毁HUDText
+    /// </summary>
 	private void DestroyHUDText()
 	{
 		if (this.mText != null)
@@ -1297,7 +1338,10 @@ public class SurfaceManager : UnitComponent
 			this.mHpBar.setActive(act);
 		}
 	}
-
+    /// <summary>
+    /// 是否有血条和hud文字显示
+    /// </summary>
+    /// <returns></returns>
 	private bool IsHaveHudBarAndHudText()
 	{
 		if (this.self.isItem || this.self.isBuffItem)
@@ -1311,7 +1355,9 @@ public class SurfaceManager : UnitComponent
 		SysMonsterMainVo monsterMainData = BaseDataMgr.instance.GetMonsterMainData(this.self.npc_id);
 		return monsterMainData == null || monsterMainData.is_display_head_ui > 0;
 	}
-
+    /// <summary>
+    /// 清理资源
+    /// </summary>
 	public static void ClearResources()
 	{
 		SurfaceManager.deathMat = null;
